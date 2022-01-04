@@ -1,0 +1,4 @@
+export const LOGIN_AS_STUDENT = "LOGIN AS STUDENT";
+export const LOGIN_AS_WARDEN = "LOGIN AS WARDEN";
+export const LOGIN_AS_CANTEEN = "LOGIN AS CANTEEN";
+export const LOGIN_AS_GUARD = "LOGIN_AS_GUARD";
