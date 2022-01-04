@@ -1,0 +1,4 @@
+export const ADD_STUDENT  = "ADD STUDENT";
+export const EDIT_STUDENT = "EDIT STUDENT";
+export const ALL_STUDENTS = "ALL STUDENTS";
+export const COMPLAINTS = "STUDENT COMPLAINTS";

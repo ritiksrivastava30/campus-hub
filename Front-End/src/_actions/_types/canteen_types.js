@@ -1,0 +1,5 @@
+export const FETCH_CANTEEN = "FETCH_CANTEEN";
+export const FETCH_CANTEENS = "FETCH_CANTEENS";
+export const ADD_CANTEEN = "ADD_CANTEEN";
+export const DELETE_CANTEEN = "DELETE_CANTEEN";
+export const EDIT_CANTEEN = "EDIT_CANTEEN";
