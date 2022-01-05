@@ -10,7 +10,7 @@ public class Student {
 	private String parentPhoneNumber;
 	private String branch;
 	private int roomNo;
-	private int hostelId;
+	private String hostelName;
 	private String email;
 	private String gender;
 	private String dob;
@@ -20,7 +20,7 @@ public class Student {
 		super();
 	}
 	public Student(int registrationNo, String password, String name, int semester, String address, String phoneNumber,
-			String parentPhoneNumber, String branch, int roomNo, int hostelId, String email, String gender, String dob,
+			String parentPhoneNumber, String branch, int roomNo, String hostelName, String email, String gender, String dob,
 			String aadharCardNo, int blackdots) {
 		super();
 		this.registrationNo = registrationNo;
@@ -32,7 +32,7 @@ public class Student {
 		this.parentPhoneNumber = parentPhoneNumber;
 		this.branch = branch;
 		this.roomNo = roomNo;
-		this.hostelId = hostelId;
+		this.hostelName = hostelName;
 		this.email = email;
 		this.gender = gender;
 		this.dob = dob;
@@ -93,11 +93,12 @@ public class Student {
 	public void setRoomNo(int roomNo) {
 		this.roomNo = roomNo;
 	}
-	public int getHostelId() {
-		return hostelId;
+	
+	public String getHostelName() {
+		return hostelName;
 	}
-	public void setHostelId(int hostelId) {
-		this.hostelId = hostelId;
+	public void setHostelName(String hostelName) {
+		this.hostelName = hostelName;
 	}
 	public String getEmail() {
 		return email;
@@ -128,5 +129,13 @@ public class Student {
 	}
 	public void setBlackdots(int blackdots) {
 		this.blackdots = blackdots;
+	}
+	@Override
+	public String toString() {
+		return "Student [registrationNo=" + registrationNo + ", password=" + password + ", name=" + name + ", semester="
+				+ semester + ", address=" + address + ", phoneNumber=" + phoneNumber + ", parentPhoneNumber="
+				+ parentPhoneNumber + ", branch=" + branch + ", roomNo=" + roomNo + ", hostelName=" + hostelName
+				+ ", email=" + email + ", gender=" + gender + ", dob=" + dob + ", aadharCardNo=" + aadharCardNo
+				+ ", blackdots=" + blackdots + "]";
 	}
 }

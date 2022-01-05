@@ -22,7 +22,7 @@ public class StudentRowMapper implements RowMapper<Student>{
 		s.setParentPhoneNumber(rs.getString(7));
 		s.setBranch(rs.getString(8));
 		s.setRoomNo(rs.getInt(9));
-		s.setHostelId(rs.getInt(10));
+		s.setHostelName(rs.getString(10));
 		s.setEmail(rs.getString(11));
 		s.setGender(rs.getString(12));
 		s.setDob(rs.getString(13));

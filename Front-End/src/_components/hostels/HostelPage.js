@@ -22,17 +22,17 @@ const HostelPage = (props) => {
 
     return (
         <div>
-            <h1>{`Hostel ${hostelName}`}</h1>
-            <Link to = "/hostels/:hostelName/addStudent">
+            <h1> {hostelName}</h1>
+            <Link to = {`/hostels/${hostelName}/addStudent`}>
                 <Button text = {ADD_STUDENT} />
             </Link>
-            <Link to = "/hostels/:hostelName/allStudents">
+            <Link to = {`/hostels/${hostelName}/allStudents`}>
                 <Button text = {ALL_STUDENTS} />
             </Link>
-            <Link to = "/hostels/:hostelName/editStudent">
+            <Link to = {`/hostels/${hostelName}/editStudent`}>
                 <Button text = {EDIT_STUDENT} />
             </Link>
-            <Link to = "/hostels/:hostelName/complaints">
+            <Link to = {`/hostels/${hostelName}/complaints`}>
                 <Button text = {COMPLAINTS} />
             </Link>
             <Link to = "/">

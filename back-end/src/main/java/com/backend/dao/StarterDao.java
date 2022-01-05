@@ -2,6 +2,8 @@ package com.backend.dao;
 
 
 
+import javax.management.Query;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -25,13 +27,14 @@ public class StarterDao {
 	
 	public void createInitialTables() {
 		String que;
+		que = "CREATE TABLE IF NOT EXISTS `branch` (`id` INT NOT NULL AUTO_INCREMENT, `name` VARCHAR(100) NOT NULL, PRIMARY KEY(`id`) ); ";
+		jdbcTemplate.execute(que);
 		que = "CREATE TABLE IF NOT EXISTS `hostels` (`id` INT NOT NULL AUTO_INCREMENT, `name` VARCHAR(100) NOT NULL UNIQUE, `capacity` INT NOT NULL, `status` BOOLEAN NOT NULL, PRIMARY KEY (`id`));";
 		jdbcTemplate.execute(que);
 		que = "CREATE TABLE IF NOT EXISTS `wardens` (`id` INT NOT NULL AUTO_INCREMENT, `name` VARCHAR(100) NOT NULL, `email` VARCHAR(100) NOT NULL UNIQUE, `password` VARCHAR(45) NOT NULL, `phone_no` VARCHAR(15) NOT NULL UNIQUE, `hostel_id` INT NULL, PRIMARY KEY (`id`), FOREIGN KEY(`hostel_id`) REFERENCES `hostels`(`id`));";
 		jdbcTemplate.execute(que);
-		que = "CREATE TABLE IF NOT EXISTS `students` (`reg_no` INT NOT NULL,`password` VARCHAR(45) NULL,`name` VARCHAR(100) NOT NULL,`semester` INT NULL,`address` VARCHAR(250) NULL,`personal_mob` VARCHAR(15) NULL,`parent_mob` VARCHAR(15) NULL,`branch` VARCHAR(45) NULL,`room_no` INT NULL,`hostel_id` INT NULL,`email` VARCHAR(100) NULL,`gender` VARCHAR(10) NULL,`dob` VARCHAR(15) NULL,`adhaarcard_no` VARCHAR(45) NULL,`blackdots` INT NULL ,  PRIMARY KEY (`reg_no`), UNIQUE INDEX `reg_no_UNIQUE` (`reg_no` ASC));";
+		que = "CREATE TABLE IF NOT EXISTS `students` (`reg_no` INT NOT NULL,`password` VARCHAR(45) NOT NULL,`name` VARCHAR(100) NOT NULL,`semester` INT NOT NULL,`address` VARCHAR(250) NOT NULL,`personal_mob` VARCHAR(15) NOT NULL,`parent_mob` VARCHAR(15) NOT NULL,`branch_id` int NOT NULL,`room_no` INT NOT NULL,`hostel_id` INT NOT NULL,`email` VARCHAR(100) NOT NULL,`gender` VARCHAR(6) NOT NULL,`dob` DATE NOT NULL,`adhaarcard_no` VARCHAR(45) NOT NULL,`blackdots` INT NOT NULL , PRIMARY KEY (`reg_no`), FOREIGN KEY (`hostel_id`) REFERENCES `hostels`(`id`), FOREIGN KEY (`branch_id`) REFERENCES `branch`(`id`), UNIQUE INDEX `reg_no_UNIQUE` (`reg_no` ASC));";
 		jdbcTemplate.execute(que);		
-		
 		que = "INSERT IGNORE INTO `hostels`(`name`, `capacity`, `status`) VALUES ('superadmin', '0', '1');";
 		jdbcTemplate.execute(que);
 		que="INSERT IGNORE INTO `wardens` (`name`, `email`, `password`, `phone_no`, `hostel_id`) VALUES ('SuperAdmin', 'superadmin@mnnit.ac.in', 'admin_123', '6200075988', '1');";
@@ -44,8 +47,10 @@ public class StarterDao {
 		jdbcTemplate.execute(que);
 		que="INSERT IGNORE INTO `wardens` (`name`, `email`, `password`, `phone_no`, `hostel_id`) VALUES ('Monika Gupta', 'mg@mnnit.ac.in', 'monika_123', '12345667', '3');";
 		jdbcTemplate.execute(que);
-		
-		
+		String str = "2000-12-02";
+		que="INSERT IGNORE INTO `students` (`reg_no`, `password`, `name`, `semester`, `address`, `personal_mob`, `parent_mob`, `branch_id`, `room_no`, `hostel_id`, `email`, `gender`, `dob`, `adhaarcard_no`, `blackdots`) VALUES ('20198018', '20198018', 'YashSanthalia', '6', 'Lakhisarai', '6200075988', '9430578425', '1', '101', '2', 'yash@gmail.com', 'Male', ? , '8393939399393', '0');";
+		jdbcTemplate.update(que, str);
+		insertBranches();
 		//for test
 //		Student s=new Student();
 //		s.setReg_no(20193);
@@ -70,6 +75,28 @@ public class StarterDao {
 //		for(int i=0;i<st.size();i++) {
 //			System.out.println(st.get(i).getReg_no());
 //		}
+	}
+	
+	public void insertBranches() {
+		String que;
+		que = "INSERT IGNORE INTO `branch` (`id`, `name`) VALUES ('1', 'Information Technology');";
+		jdbcTemplate.execute(que);
+		que = "INSERT IGNORE INTO `branch` (`id`, `name`) VALUES ('2', 'Computer Science Engineering');";
+		jdbcTemplate.execute(que);
+		que = "INSERT IGNORE INTO `branch` (`id`, `name`) VALUES ('3', 'Electrical Enginnering');";
+		jdbcTemplate.execute(que);
+		que = "INSERT IGNORE INTO `branch` (`id`, `name`) VALUES ('4', 'Mechanical Enginnering');";
+		jdbcTemplate.execute(que);
+		que = "INSERT IGNORE INTO `branch` (`id`, `name`) VALUES ('5', 'Civil Enginnering');";
+		jdbcTemplate.execute(que);
+		que = "INSERT IGNORE INTO `branch` (`id`, `name`) VALUES ('6', 'Chemical Enginnering');";
+		jdbcTemplate.execute(que);
+		que = "INSERT IGNORE INTO `branch` (`id`, `name`) VALUES ('7', 'Electronics and Communication Enginnering');";
+		jdbcTemplate.execute(que);
+		que = "INSERT IGNORE INTO `branch` (`id`, `name`) VALUES ('8', 'Production Enginnering');";
+		jdbcTemplate.execute(que);
+		que = "INSERT IGNORE INTO `branch` (`id`, `name`) VALUES ('9', 'Biotechnology');";
+		jdbcTemplate.execute(que);
 	}
 
 }
