@@ -43,13 +43,4 @@ public class WardenController {
 		return wardenService.fetchWardens();
 	}
 	
-	@PostMapping("/students")
-	public Student addStudent(@RequestBody Student s) {
-		return wardenService.addStudent(s);
-	}
-	
-	@GetMapping("/students")
-	public List<Student> fetchStudentsByHostelId(int hostelId){
-		return wardenService.fetchStudentsByHostelId(hostelId);
-	}
 }

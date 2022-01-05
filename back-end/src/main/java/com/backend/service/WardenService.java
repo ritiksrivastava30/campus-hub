@@ -31,11 +31,4 @@ public class WardenService {
 		return wardenDao.updateWarden(id, warden);
 	}
 	
-	public Student addStudent(Student s) {
-		return wardenDao.addStudent(s);
-	}
-	
-	public List<Student> fetchStudentsByHostelId(int hostelId){
-		return wardenDao.fetchStudentsByHostelId(hostelId);
-	}
 }

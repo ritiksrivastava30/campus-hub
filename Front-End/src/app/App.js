@@ -24,7 +24,6 @@ import AddStudent from "../_components/hostels/AddStudent";
 import AllStudents from "../_components/hostels/AllStudents";
 import Complaints from "../_components/hostels/Complaints";
 import EditStudent from "../_components/hostels/EditStudent";
-//import { FILE_COMPLAINT } from "../_components/_constants/student_constants";
 
 import SuperAdminPrivateRoute from "./SuperAdminPrivateRoute";
 
@@ -49,7 +48,7 @@ const App = () => {
           <Route path = "/hostels/:hostelName/addStudent" element = { <AddStudent/>} />  
           <Route path = "/hostels/:hostelName/allStudents" element = { <AllStudents />} />  
           <Route path = "/hostels/:hostelName/complaints" element = { <Complaints />} />  
-          <Route path = "/hostels/:hostelName/editStudent/:regNo" element = { <EditStudent />} />  
+          <Route path = "/hostels/:hostelName/editStudent" element = { <EditStudent />} />  
       </React.Fragment>
     )
   }
