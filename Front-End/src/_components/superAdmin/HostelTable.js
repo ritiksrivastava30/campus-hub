@@ -11,21 +11,21 @@ const HostelTable = ({ data, rowsPerPage }) => {
 
   return (
     <>
-      <table className={styles.table}>
-        <thead className={styles.tableRowHeader}>
+      <table className= "table table-striped table-bordered table-responsive table-info">
+        <thead>
           <tr>
-            <th className={styles.tableHeader}>Hostel Name</th>
-            <th className={styles.tableHeader}>Capacity</th>
-            <th className={styles.tableHeader}>IsActive</th>
+            <th className = "col">Hostel Name</th>
+            <th className = "col">Capacity</th>
+            <th className = "col">IsActive</th>
           </tr>
         </thead>
         <tbody>
           {slice.map((el) => (
-            <tr className={styles.tableRowItems} key={el.id}>
-              <td className={styles.tableCell}>{el.name}</td>
-              <td className={styles.tableCell}>{el.capacity}</td>
-              <td className={styles.tableCell}>{el.status}</td>
-              <td className={styles.tableCell}>
+            <tr key={el.id}>
+              <td>{el.name}</td>
+              <td>{el.capacity}</td>
+              <td>{el.status}</td>
+              <td>
                 <Link to={`/superAdmin/editHostel/${el.id}`}>
                   <Button text="EDIT" />
                 </Link>

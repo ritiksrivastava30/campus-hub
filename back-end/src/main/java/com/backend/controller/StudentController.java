@@ -33,13 +33,12 @@ public class StudentController {
 	}
 	
 	@PatchMapping("/students/{registrationNumber}")
-	public Student updateStudent(@PathVariable int registrationNumber, Student student) {
+	public Student updateStudent(@PathVariable int registrationNumber, @RequestBody Student student) {
 		return studentService.updateStudent(registrationNumber, student);
 	}
 	
 	@GetMapping("/students/hostel/{hostelName}")
 	public List<Student> fetchStudentsByHostelName(@PathVariable String hostelName){
-		System.out.println(hostelName);
 		return studentService.fetchStudentsByHostelName(hostelName);
 	}
 	

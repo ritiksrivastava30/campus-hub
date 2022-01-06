@@ -3,13 +3,11 @@ import { Link, Outlet, useParams } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { Button } from "../_utility_components/Button";
-import {FILE_COMPLAINT,EDIT_DETAILS, PROFILE } from "../_constants/student_constants";
+import {FILE_COMPLAINT, PROFILE } from "../_constants/student_constants";
 import { fetchStudentByRegistrationNumber, resetStudents } from "../../_actions/student_actions";
 import { resetStatus, resetLogin } from "../../_actions/utility_actions";
 
 const StudentPage = (props) => {
-
-    console.log(props.student);
 
     const params = useParams();
     const registrationNumber = params.regNo;
@@ -27,9 +25,6 @@ const StudentPage = (props) => {
     return (
         <div>
             {props.student == undefined ? <h1></h1> : <h1> {props.student.name} </h1>}
-            <Link to = { `/students/${registrationNumber}/editDetails`} >
-                <Button text = {EDIT_DETAILS} />
-            </Link>
             <Link to = { `/students/${registrationNumber}/fileComplaint`} >
                 <Button text = {FILE_COMPLAINT} />
             </Link>

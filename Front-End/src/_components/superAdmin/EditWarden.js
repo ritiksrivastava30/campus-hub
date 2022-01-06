@@ -31,7 +31,6 @@ const EditWarden = (props) => {
 
 const mapStateToProps = (state) => {
     const id = window.location.pathname.split("/")[3];
-    console.log(id);
     const warden = Object.values(state.wardens).filter((warden) => {
         return warden.id == id
     })

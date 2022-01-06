@@ -7,6 +7,7 @@ import studentReducer from "./studentReducer";
 import loginReducer from "./loginReducer";
 import statusReducer from "./statusReducer";
 import wardenReducer from "./wardenReducer";
+import branchReducer from "./branchReducer";
 
 export default combineReducers({
     form : reducer,
@@ -16,5 +17,6 @@ export default combineReducers({
     guard : guardReducer,
     canteen : canteenReducer,
     status : statusReducer,
-    wardens : wardenReducer
+    wardens : wardenReducer,
+    branch : branchReducer
 });
