@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Button } from "../_utility_components/Button";
 import { fetchStudentsOfHostel, resetStudents } from "../../_actions/student_actions";
-import {resetStatus } from "../../_actions/utility_actions";
+import {resetStatus, resetLogin } from "../../_actions/utility_actions";
 import {ADD_STUDENT,EDIT_STUDENT,ALL_STUDENTS,COMPLAINTS} from "../_constants/hostel_constants";
 
 const HostelPage = (props) => {
@@ -16,8 +16,10 @@ const HostelPage = (props) => {
         props.resetStatus();
         props.fetchStudentsOfHostel(hostelName);
     }, []);
+
     const reset = () => {
         props.resetStudents();
+        props.resetLogin();
     }
 
     return (
@@ -43,7 +45,7 @@ const HostelPage = (props) => {
     );
 }
 const actionCreators = {
-    fetchStudentsOfHostel, resetStudents, resetStatus
+    fetchStudentsOfHostel, resetStudents, resetStatus, resetLogin
 }
 
 export default connect(null, actionCreators )(HostelPage);

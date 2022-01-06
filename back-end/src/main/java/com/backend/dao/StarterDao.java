@@ -1,15 +1,8 @@
 package com.backend.dao;
 
-
-
-import javax.management.Query;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
-
-import com.backend.pojo.Student;
 
 
 @Repository
@@ -17,12 +10,9 @@ public class StarterDao {
 	
 	@Autowired
 	public JdbcTemplate jdbcTemplate;
-	@Autowired
-	public NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 	
 	public StarterDao() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	
 	public void createInitialTables() {
@@ -47,34 +37,8 @@ public class StarterDao {
 		jdbcTemplate.execute(que);
 		que="INSERT IGNORE INTO `wardens` (`name`, `email`, `password`, `phone_no`, `hostel_id`) VALUES ('Monika Gupta', 'mg@mnnit.ac.in', 'monika_123', '12345667', '3');";
 		jdbcTemplate.execute(que);
-		String str = "2000-12-02";
-		que="INSERT IGNORE INTO `students` (`reg_no`, `password`, `name`, `semester`, `address`, `personal_mob`, `parent_mob`, `branch_id`, `room_no`, `hostel_id`, `email`, `gender`, `dob`, `adhaarcard_no`, `blackdots`) VALUES ('20198018', '20198018', 'YashSanthalia', '6', 'Lakhisarai', '6200075988', '9430578425', '1', '101', '2', 'yash@gmail.com', 'Male', ? , '8393939399393', '0');";
-		jdbcTemplate.update(que, str);
 		insertBranches();
-		//for test
-//		Student s=new Student();
-//		s.setReg_no(20193);
-//		s.setPassword("20192");
-//		s.setName("20192");
-//		s.setSemester(4);
-//		s.setAddress("20192");
-//		s.setPersonal_mob("20192");
-//		s.setParent_mob("20192");
-//		s.setBranch("20192");
-//		s.setRoom_no(77);
-//		s.setHostel_id(1);
-//		s.setEmail("20192");
-//		s.setGender("20192");
-//		s.setDob("20192");
-//		s.setAdhaarcard_no("20192");
-//		s.setBlackdots(7);
-//		String query="INSERT INTO `students` (`reg_no`, `password`, `name`, `semester`, `address`, `personal_mob`, `parent_mob`, `branch`, `room_no`, `hostel_id`, `email`, `gender`, `dob`, `adhaarcard_no`, `blackdots`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
-//		int res = jdbcTemplate.update(query, s.getReg_no(),s.getPassword(),s.getName(),s.getSemester(),s.getAddress(),s.getPersonal_mob(),s.getParent_mob(),s.getBranch(),s.getRoom_no(),s.getHostel_id(),s.getEmail(),s.getGender(),s.getDob(),s.getAdhaarcard_no(),s.getBlackdots());
-//		que="SELECT * from `students` WHERE `hostel_id` = ?;";
-//		List<Student> st=jdbcTemplate.query(que, new StudentRowMapper(),1);
-//		for(int i=0;i<st.size();i++) {
-//			System.out.println(st.get(i).getReg_no());
-//		}
+		insertDummyStudents(); //just for testing
 	}
 	
 	public void insertBranches() {
@@ -97,6 +61,15 @@ public class StarterDao {
 		jdbcTemplate.execute(que);
 		que = "INSERT IGNORE INTO `branch` (`id`, `name`) VALUES ('9', 'Biotechnology');";
 		jdbcTemplate.execute(que);
+	}
+	
+	public void insertDummyStudents() {
+		String que = "INSERT IGNORE INTO `students` (`reg_no`, `password`, `name`, `semester`, `address`, `personal_mob`, `parent_mob`, `branch_id`, `room_no`, `hostel_id`, `email`, `gender`, `dob`, `adhaarcard_no`, `blackdots`) VALUES ('20198018', '20198018', 'YashSanthalia', '6', 'Lakhisarai', '6200075988', '9430578425', '1', '101', '2', 'yash@gmail.com', 'Male', '2000-12-02' , '8393939399393', '0');";
+		jdbcTemplate.update(que);
+		que = "INSERT IGNORE INTO `students` (`reg_no`, `password`, `name`, `semester`, `address`, `personal_mob`, `parent_mob`, `branch_id`, `room_no`, `hostel_id`, `email`, `gender`, `dob`, `adhaarcard_no`, `blackdots`) VALUES ('20198034', '20198034', 'Ritik', '6', 'Allahabad', '7288228287', '8282828827', '2', '203', '2', 'ritik@gmail.com', 'Male', '2000-09-06', '7339939387838', '1');";
+		jdbcTemplate.update(que);
+		que = "INSERT IGNORE INTO `students` (`reg_no`, `password`, `name`, `semester`, `address`, `personal_mob`, `parent_mob`, `branch_id`, `room_no`, `hostel_id`, `email`, `gender`, `dob`, `adhaarcard_no`, `blackdots`) VALUES ('20193045', '20193045', 'Stuti', '7', 'MP', '7288228247', '8282828847', '6', '205', '3', 'stuti@gmail.com', 'Female', '1999-11-09', '4439939387838', '0');";
+		jdbcTemplate.update(que);
 	}
 
 }

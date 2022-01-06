@@ -11,7 +11,7 @@ public class StudentRowMapper implements RowMapper<Student>{
 
 	@Override
 	public Student mapRow(ResultSet rs, int rowNum) throws SQLException {
-		// TODO Auto-generated method stub
+		
 		Student s=new Student();
 		s.setRegistrationNo(rs.getInt(1));
 		s.setPassword(rs.getString(2));

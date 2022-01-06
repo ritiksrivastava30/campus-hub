@@ -14,15 +14,27 @@ public class StudentService {
 	@Autowired
 	StudentDao studentDao;
 	
-	public String checkCredentials(String username, String password) {
-		return studentDao.checkCredentials(username, password);
+	public String studentLogin(String username, String password) {
+		return studentDao.studentLogin(username, password);
 	}
 	
 	public Student addStudent(Student s) {
 		return studentDao.addStudent(s);
 	}
 	
-	public List<Student> fetchStudentsByHostelId(int hostelId){
-		return studentDao.fetchStudentsByHostelId(hostelId);
+	public Student updateStudent(int registrationNumber, Student student) {
+		return studentDao.updateStudent(registrationNumber, student);
+	}
+
+	public List<Student> fetchStudentsByHostelName(String hostelName){
+		return studentDao.fetchStudentsByHostelName(hostelName);
+	}
+	
+	public Student fetchStudentByRegistrationNumber(int registrationNumber) {
+		return studentDao.fetchStudentByRegistrationNumber(registrationNumber);
+	}
+	
+	public List<Student> fetchStudents() {
+		return studentDao.fetchStudents();
 	}
 }

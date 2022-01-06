@@ -1,7 +1,7 @@
 package com.backend.pojo;
 
 public class Student {
-	private int registrationNo;
+	private int registrationNumber;
 	private String password;
 	private String name;
 	private int semester;
@@ -19,11 +19,11 @@ public class Student {
 	public Student() {
 		super();
 	}
-	public Student(int registrationNo, String password, String name, int semester, String address, String phoneNumber,
+	public Student(int registrationNumber, String password, String name, int semester, String address, String phoneNumber,
 			String parentPhoneNumber, String branch, int roomNo, String hostelName, String email, String gender, String dob,
 			String aadharCardNo, int blackdots) {
 		super();
-		this.registrationNo = registrationNo;
+		this.registrationNumber = registrationNumber;
 		this.password = password;
 		this.name = name;
 		this.semester = semester;
@@ -39,11 +39,11 @@ public class Student {
 		this.aadharCardNo = aadharCardNo;
 		this.blackdots = blackdots;
 	}
-	public int getRegistrationNo() {
-		return registrationNo;
+	public int getRegistrationNumber() {
+		return registrationNumber;
 	}
-	public void setRegistrationNo(int registrationNo) {
-		this.registrationNo = registrationNo;
+	public void setRegistrationNo(int registrationNumber) {
+		this.registrationNumber = registrationNumber;
 	}
 	public String getPassword() {
 		return password;
@@ -132,7 +132,7 @@ public class Student {
 	}
 	@Override
 	public String toString() {
-		return "Student [registrationNo=" + registrationNo + ", password=" + password + ", name=" + name + ", semester="
+		return "Student [registrationNo=" + registrationNumber + ", password=" + password + ", name=" + name + ", semester="
 				+ semester + ", address=" + address + ", phoneNumber=" + phoneNumber + ", parentPhoneNumber="
 				+ parentPhoneNumber + ", branch=" + branch + ", roomNo=" + roomNo + ", hostelName=" + hostelName
 				+ ", email=" + email + ", gender=" + gender + ", dob=" + dob + ", aadharCardNo=" + aadharCardNo

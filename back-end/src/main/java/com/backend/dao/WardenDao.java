@@ -3,17 +3,14 @@ package com.backend.dao;
 import java.util.List;
 
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import com.backend.pojo.Hostel;
-import com.backend.pojo.Student;
 import com.backend.pojo.Warden;
 
 @Repository
 public class WardenDao extends StarterDao{
 	
-	public String getHostelName(String email, String password) {
+	public String wardenLogin(String email, String password) {
 		String query = "SELECT `name` FROM `hostels` WHERE `id` = (SELECT `hostel_id` FROM `wardens` WHERE `email` = '" +email+ "' AND `password` = '" + password +"');";
 		String ss="";
 		try {
