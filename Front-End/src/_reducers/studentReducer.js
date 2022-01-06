@@ -5,7 +5,7 @@ export default(state = {}, action) => {
     switch(action.type){
         case FETCH_STUDENT  : return { ...state, [action.payload.registrationNumber] : action.payload };
         case FETCH_STUDENTS : return { ...state, ..._.mapKeys(action.payload, "registrationNumber")};
-        case FETCH_STUDENTS_OF_HOSTEL : return { ...state, ..._.mapKeys(action.payload, "hostelName")};
+        case FETCH_STUDENTS_OF_HOSTEL : return { ...state, ..._.mapKeys(action.payload, "registrationNumber")};
         case ADD_STUDENT    : return {...state, [action.payload.id] : action.payload };
         case EDIT_STUDENT   : return {...state, [action.payload.id] : action.payload };
         case RESET_STUDENTS : return action.payload;

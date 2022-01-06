@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.backend.pojo.Student;
 import com.backend.pojo.Warden;
 import com.backend.service.WardenService;
 
@@ -23,8 +22,8 @@ public class WardenController {
 	WardenService wardenService;
 	
 	@GetMapping("/hostels/{userName}/{password}")
-	public String fetchHostelName(@PathVariable String userName, @PathVariable String password) {
-		return wardenService.getHostelName(userName, password);
+	public String wardenLogin(@PathVariable String userName, @PathVariable String password) {
+		return wardenService.wardenLogin(userName, password);
 	}
 	
 	@PostMapping("/wardens")

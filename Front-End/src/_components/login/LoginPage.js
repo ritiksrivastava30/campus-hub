@@ -24,7 +24,6 @@ const LoginPage = (props) => {
   useEffect(() => {
     if(_.isEmpty(props.login)) return;
     else if(loginAs === "students") {
-      console.log("Student Detected");
       navigate(`/students/${props.login.to}`);
     }
     else if(loginAs === "wardens") {

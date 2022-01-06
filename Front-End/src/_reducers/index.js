@@ -11,7 +11,7 @@ import wardenReducer from "./wardenReducer";
 export default combineReducers({
     form : reducer,
     login : loginReducer,
-    student : studentReducer,
+    students : studentReducer,
     hostel : hostelReducer,
     guard : guardReducer,
     canteen : canteenReducer,

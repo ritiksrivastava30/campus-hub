@@ -1,13 +1,18 @@
 import _ from "lodash";
-import { ADD_STUDENT, EDIT_STUDENT, FETCH_STUDENTS,FETCH_STUDENTS_OF_HOSTEL, RESET_STUDENTS } from "./_types/student_types";
+import { ADD_STUDENT, EDIT_STUDENT, FETCH_STUDENT, FETCH_STUDENTS,FETCH_STUDENTS_OF_HOSTEL, RESET_STUDENTS } from "./_types/student_types";
 import { LOGIN_STUDENT } from "./_types/login_types";
 
 import api from "../apis/main";
 
 export const loginStudent = (formValues) => async dispatch => {
-    console.log(LOGIN_STUDENT);
     const response = await api.get(`/students/${formValues.userName}/${formValues.password}`);
+    console.log(response.data);
+    if(response.data === "error"){
+        dispatch({ type : "STATUS", payload : { status:"Error", description : "Check your credentials" } }); 
+        return; 
+    }
 
+    dispatch({ type : "STATUS", payload : { status:"Success", description : `${response.data}` } }); 
     dispatch({ type : LOGIN_STUDENT, payload : response.data });
 }
 
@@ -20,8 +25,9 @@ export const fetchStudents = () => async dispatch => {
 
 export const fetchStudentsOfHostel = (hostelName) => async dispatch => {
     console.log(FETCH_STUDENTS_OF_HOSTEL);
-    const response = await api.get(`/students/${hostelName}`);
-    
+    console.log(hostelName);
+    const response = await api.get(`/students/hostel/${hostelName}`);
+    console.log(response.data);
     dispatch({ type : FETCH_STUDENTS_OF_HOSTEL, payload : response.data });
 }
 
@@ -48,7 +54,7 @@ export const editStudent = (id, formValues) => async dispatch => {
 export const fetchStudentByRegistrationNumber = (registrationNumber) => async dispatch => {
     const response = await api.get(`/students/${registrationNumber}`);
     
-    dispatch({ type : LOGIN_STUDENT, payload : response.data });
+    dispatch({ type : FETCH_STUDENT, payload : response.data });
 }
 
 export const resetStudents = () => async dispatch => {
