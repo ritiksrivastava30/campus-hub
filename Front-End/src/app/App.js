@@ -11,7 +11,6 @@ import EditWarden from "../_components/superAdmin/EditWarden";
 import ShowHostels from "../_components/superAdmin/ShowHostels";
 import ShowWardens from "../_components/superAdmin/ShowWardens";
 import StudentPage from "../_components/students/StudentPage";
-import EditDetails from "../_components/students/EditDetails";
 import FileComplaint from "../_components/students/FileComplaint";
 import Profile from "../_components/students/Profile";
 import CanteenPage from "../_components/canteens/CanteenPage";
@@ -21,11 +20,13 @@ import CheckInCheckOut from "../_components/guards/CheckInCheckOut";
 import StudentOutside from "../_components/guards/StudentOutside";
 import HostelPage from "../_components/hostels/HostelPage";
 import AddStudent from "../_components/hostels/AddStudent";
-import AllStudents from "../_components/hostels/AllStudents";
+import ShowStudents from "../_components/hostels/ShowStudents";
 import Complaints from "../_components/hostels/Complaints";
 import EditStudent from "../_components/hostels/EditStudent";
 
 import SuperAdminPrivateRoute from "./SuperAdminPrivateRoute";
+import HostelPrivateRoute from "./HostelPrivateRoute";
+import StudentPrivateRoute from "./StudentPrivateRoute";
 
 const App = () => {
 
@@ -45,10 +46,10 @@ const App = () => {
   const hostelRoutes = () => {
     return (
       <React.Fragment>
-          <Route path = "/hostels/:hostelName/addStudent" element = { <AddStudent/>} />  
-          <Route path = "/hostels/:hostelName/allStudents" element = { <AllStudents />} />  
-          <Route path = "/hostels/:hostelName/complaints" element = { <Complaints />} />  
-          <Route path = "/hostels/:hostelName/editStudent" element = { <EditStudent />} />  
+          <Route path = "/hostels/:hostelName/addStudent" element = { <HostelPrivateRoute> <AddStudent /> </HostelPrivateRoute> } />  
+          <Route path = "/hostels/:hostelName/showStudents" element = { <HostelPrivateRoute> <ShowStudents /> </HostelPrivateRoute>} />  
+          <Route path = "/hostels/:hostelName/complaints" element = { <HostelPrivateRoute> <Complaints/> </HostelPrivateRoute> } />  
+          <Route path = "/hostels/:hostelName/editStudent/:regNo" element = { <HostelPrivateRoute> < EditStudent/> </HostelPrivateRoute>} />  
       </React.Fragment>
     )
   }
@@ -56,9 +57,8 @@ const App = () => {
   const studentRoutes = () => {
     return (
       <React.Fragment>
-          <Route path = "/students/:regNo/editDetails" element = { <EditDetails/>} />
-          <Route path = "/students/:regNo/fileComplaint" element = { <FileComplaint/>} />
-          <Route path = "/students/:regNo/profile" element = { <Profile/>} />
+          <Route path = "/students/:regNo/fileComplaint" element = { <StudentPrivateRoute> <FileComplaint /> </StudentPrivateRoute> } />
+          <Route path = "/students/:regNo/profile" element = { <StudentPrivateRoute> <Profile /> </StudentPrivateRoute> } />
       </React.Fragment>
     )
   }

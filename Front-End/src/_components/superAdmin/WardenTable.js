@@ -11,24 +11,24 @@ const WardenTable = ({ data, rowsPerPage }) => {
 
   return (
     <>
-      <table className={styles.table}>
-        <thead className={styles.tableRowHeader}>
+      <table className= "table table-striped table-bordered table-responsive table-info">
+        <thead >
           <tr>
-            <th className={styles.tableHeader}>Warden Name</th>
-            <th className={styles.tableHeader}>Email Id</th>
-            <th className={styles.tableHeader}>Phone Number</th>
-            <th className={styles.tableHeader}>Hostel</th>
+            <th className="col">Warden Name</th>
+            <th className="col">Email Id</th>
+            <th className="col">Phone Number</th>
+            <th className="col">Hostel</th>
 
           </tr>
         </thead>
         <tbody>
           {slice.map((el) => (
-            <tr className={styles.tableRowItems} key={el.id}>
-              <td className={styles.tableCell}>{el.name}</td>
-              <td className={styles.tableCell}>{el.email}</td>
-              <td className={styles.tableCell}>{el.phoneNumber}</td>
-              <td className={styles.tableCell}>{el.hostelName}</td>
-              <td className={styles.tableCell}>
+            <tr key={el.id}>
+              <td>{el.name}</td>
+              <td>{el.email}</td>
+              <td>{el.phoneNumber}</td>
+              <td>{el.hostelName}</td>
+              <td>
                 <Link to = {`/superAdmin/editWarden/${el.id}`} >
                   <Button text = "EDIT" />
                 </Link>

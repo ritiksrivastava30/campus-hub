@@ -26,16 +26,16 @@ public class StudentDao extends StarterDao{
 		int branch_id = getBranchId(s.getBranch());
 		int hostel_id = getHostelId(s.getHostelName());
 		String query = "INSERT INTO `students` (`reg_no`, `password`, `name`, `semester`, `address`, `personal_mob`, `parent_mob`, `branch_id`, `room_no`, `hostel_id`, `email`, `gender`, `dob`, `adhaarcard_no`, `blackdots`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
-		int res = jdbcTemplate.update(query, s.getRegistrationNumber(),s.getPassword(),s.getName(),s.getSemester(),s.getAddress(),s.getPhoneNumber(),s.getParentPhoneNumber(), branch_id, s.getRoomNo(), hostel_id, s.getEmail(),s.getGender(),s.getDob(),s.getAadharCardNo(),s.getBlackdots());
-		if(res == 1) {
+		try {
+			jdbcTemplate.update(query, s.getRegistrationNumber(),s.getPassword(),s.getName(),s.getSemester(),s.getAddress(),s.getPhoneNumber(),s.getParentPhoneNumber(), branch_id, s.getRoomNo(), hostel_id, s.getEmail(),s.getGender(),s.getDob(),s.getAadharCardNo(),s.getBlackdots());
 			return fetchStudentByRegistrationNumber(s.getRegistrationNumber());
+		}catch(Exception e) {
+			return null;
 		}
-		return null;
 	}
 	
 	public List<Student> fetchStudentsByHostelName(String hostelName){
 		int hostelId = getHostelId(hostelName);
-		System.out.println(hostelId);
 		String query = "SELECT `reg_no`, `password`, students.name, `semester`, `address`, `personal_mob`, `parent_mob`, branch.name, `room_no`, hostels.name, `email`, `gender`, `dob`, `adhaarcard_no`, `blackdots` FROM `students` join `branch` join `hostels` WHERE students.branch_id = branch.id AND students.hostel_id = hostels.id AND hostels.id = ?;";
 		try {
 			List<Student> students = jdbcTemplate.query(query, new StudentRowMapper(), hostelId);
@@ -50,11 +50,12 @@ public class StudentDao extends StarterDao{
 		int branch_id = getBranchId(s.getBranch());
 		int hostel_id = getHostelId(s.getHostelName());
 		String query = "update `students` set `reg_no` = ? ,`password` = ? ,`name` = ?,`semester` = ?,`address` = ?,`personal_mob` = ? ,`parent_mob` =  ? ,`branch_id` = ? ,`room_no` = ?,`hostel_id` = ?,`email` = ?,`gender` = ?,`dob` = ?,`adhaarcard_no` = ? ,`blackdots` = ? where `reg_no` = ?;";
-		int res = jdbcTemplate.update(query, s.getRegistrationNumber() ,s.getPassword() ,s.getName(), s.getSemester(), s.getAddress(), s.getPhoneNumber(), s.getParentPhoneNumber(), branch_id, s.getRoomNo(), hostel_id, s.getEmail(), s.getGender(), s.getDob(), s.getAadharCardNo(), s.getBlackdots(), registrationNumber);
-		if(res == 1) {
-			return fetchStudentByRegistrationNumber(registrationNumber);
+		try {
+			jdbcTemplate.update(query, s.getRegistrationNumber() ,s.getPassword() ,s.getName(), s.getSemester(), s.getAddress(), s.getPhoneNumber(), s.getParentPhoneNumber(), branch_id, s.getRoomNo(), hostel_id, s.getEmail(), s.getGender(), s.getDob(), s.getAadharCardNo(), s.getBlackdots(), registrationNumber);
+			return fetchStudentByRegistrationNumber(s.getRegistrationNumber());
+		}catch (Exception e) {
+			return null;
 		}
-		return null;
 	}
 	
 	public Student fetchStudentByRegistrationNumber(int registrationNumber) {
