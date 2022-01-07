@@ -43,10 +43,10 @@ public class StarterDao {
 		jdbcTemplate.execute(que);
 		que="INSERT IGNORE INTO `wardens` (`name`, `email`, `password`, `phone_no`, `hostel_id`) VALUES ('ShivDutt', 'sd@mnnit.ac.in', 'shivdutt_123', '12345667', '2');";
 		jdbcTemplate.execute(que);
-		que="INSERT IGNORE INTO `wardens` (`name`, `email`, `password`, `phone_no`, `hostel_id`) VALUES ('Monika Gupta', 'mg@mnnit.ac.in', 'monika_123', '12345667', '3');";
+		que="INSERT IGNORE INTO `wardens` (`name`, `email`, `password`, `phone_no`, `hostel_id`) VALUES ('Monika Gupta', 'mg@mnnit.ac.in', 'monika_123', '12345687', '3');";
 		jdbcTemplate.execute(que);
 		insertBranches();
-		insertDummyStudents(); //just for testing
+//		insertDummyStudents(); //just for testing
 	}
 	
 	public void insertBranches() {
