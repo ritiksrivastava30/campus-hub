@@ -34,7 +34,7 @@ public class BackendApplication implements CommandLineRunner{
 		starterDao.insertDummyStudents();
 	}
 	
-	@Scheduled(cron="00 20 01 * * *")
+	@Scheduled(cron="00 26 01 * * *")
 	void someJob() throws InterruptedException{
 		List<String> outsidersEmail=checkInCheckOutDao.emailsOfOutsideStudents();
 		EmailService obj=new EmailService();
