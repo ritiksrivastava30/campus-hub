@@ -17,7 +17,7 @@ import CanteenPage from "../_components/canteens/CanteenPage";
 import LoginPage from "../_components/login/LoginPage";
 import GuardPage from "../_components/guards/GuardPage";
 import CheckInCheckOut from "../_components/guards/CheckInCheckOut";
-import StudentOutside from "../_components/guards/StudentOutside";
+import StudentsOutside from "../_components/guards/StudentsOutside";
 import HostelPage from "../_components/hostels/HostelPage";
 import AddStudent from "../_components/hostels/AddStudent";
 import ShowStudents from "../_components/hostels/ShowStudents";
@@ -27,6 +27,7 @@ import EditStudent from "../_components/hostels/EditStudent";
 import SuperAdminPrivateRoute from "./SuperAdminPrivateRoute";
 import HostelPrivateRoute from "./HostelPrivateRoute";
 import StudentPrivateRoute from "./StudentPrivateRoute";
+import GuardPrivateRoute from "./GuardPrivateRoute";
 
 const App = () => {
 
@@ -66,8 +67,9 @@ const App = () => {
   const guardRoutes = () => {
     return (
       <React.Fragment>
-          <Route path = "/guards/:hostelName/checkInCheckOut" element = { <CheckInCheckOut /> } />
-          <Route path = "/guards/:hostelName/studentOutside" element = { <StudentOutside/>} />
+          <Route path = "/guards/:hostelName/checkIn" element = { <GuardPrivateRoute> <CheckInCheckOut /> </GuardPrivateRoute> } />
+          <Route path = "/guards/:hostelName/checkOut" element = { <GuardPrivateRoute> <CheckInCheckOut /> </GuardPrivateRoute> } />
+          <Route path = "/guards/:hostelName/studentsOutside" element = { <GuardPrivateRoute> <StudentsOutside /> </GuardPrivateRoute> } />
       </React.Fragment>
     )
   }
