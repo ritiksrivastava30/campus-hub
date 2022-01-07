@@ -25,6 +25,14 @@ public class StarterDao {
 		jdbcTemplate.execute(que);
 		que = "CREATE TABLE IF NOT EXISTS `students` (`reg_no` INT NOT NULL,`password` VARCHAR(45) NOT NULL,`name` VARCHAR(100) NOT NULL,`semester` INT NOT NULL,`address` VARCHAR(250) NOT NULL,`personal_mob` VARCHAR(15) NOT NULL,`parent_mob` VARCHAR(15) NOT NULL,`branch_id` int NOT NULL,`room_no` INT NOT NULL,`hostel_id` INT NOT NULL,`email` VARCHAR(100) NOT NULL,`gender` VARCHAR(6) NOT NULL,`dob` DATE NOT NULL,`adhaarcard_no` VARCHAR(45) NOT NULL,`blackdots` INT NOT NULL , PRIMARY KEY (`reg_no`), FOREIGN KEY (`hostel_id`) REFERENCES `hostels`(`id`), FOREIGN KEY (`branch_id`) REFERENCES `branch`(`id`), UNIQUE INDEX `reg_no_UNIQUE` (`reg_no` ASC));";
 		jdbcTemplate.execute(que);		
+		que= "CREATE TABLE IF NOT EXISTS `guards` (`id` INT NOT NULL AUTO_INCREMENT, `name` VARCHAR(100) NOT NULL, `email` VARCHAR(100) NOT NULL UNIQUE, `password` VARCHAR(45) NOT NULL, `phone_no` VARCHAR(15) NULL, `hostel_id` INT NULL, PRIMARY KEY (`id`), FOREIGN KEY(`hostel_id`) REFERENCES `hostels`(`id`));";
+		jdbcTemplate.execute(que);
+		que="CREATE TABLE IF NOT EXISTS `check_out` (`reg_no` INT NOT NULL, `check_out_time` TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, PRIMARY KEY (`reg_no`), FOREIGN KEY(`reg_no`) REFERENCES students(`reg_no`));";
+		jdbcTemplate.execute(que);	
+		que="INSERT IGNORE INTO `guards` (`name`, `email`, `password`, `phone_no`, `hostel_id`) VALUES ('Ramesh', 'ramesh@mnnit.ac.in', 'ramesh_123', '12345667', '2');";
+		jdbcTemplate.execute(que);
+		que="INSERT IGNORE INTO `guards` (`name`, `email`, `password`, `phone_no`, `hostel_id`) VALUES ('Suresh', 'suresh@mnnit.ac.in', 'suresh_123', '12345667', '3');";
+		jdbcTemplate.execute(que);
 		que = "INSERT IGNORE INTO `hostels`(`name`, `capacity`, `status`) VALUES ('superadmin', '0', '1');";
 		jdbcTemplate.execute(que);
 		que="INSERT IGNORE INTO `wardens` (`name`, `email`, `password`, `phone_no`, `hostel_id`) VALUES ('SuperAdmin', 'superadmin@mnnit.ac.in', 'admin_123', '6200075988', '1');";
