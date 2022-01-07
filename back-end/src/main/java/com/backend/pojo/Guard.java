@@ -5,17 +5,22 @@ public class Guard {
 	private String name;
 	private String email;
 	private String password;
-	private int hostel_id;
 	private String phone_no;
+	private String hostelName;
 	
-	public Guard(int id, String name, String email, String password, int hostel_id, String phone_no) {
+	
+	public Guard(int id, String name, String email, String password, String hostelName, String phone_no) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.email = email;
 		this.password = password;
-		this.hostel_id = hostel_id;
+		this.hostelName = hostelName;
 		this.phone_no = phone_no;
+	}
+	
+	public Guard() {
+		super();
 	}
 
 	public int getId() {
@@ -50,12 +55,12 @@ public class Guard {
 		this.password = password;
 	}
 
-	public int getHostel_id() {
-		return hostel_id;
+	public String getHostelName() {
+		return hostelName;
 	}
 
-	public void setHostel_id(int hostel_id) {
-		this.hostel_id = hostel_id;
+	public void setHostelName(String hostelName) {
+		this.hostelName = hostelName;
 	}
 
 	public String getPhone_no() {
@@ -64,5 +69,11 @@ public class Guard {
 
 	public void setPhone_no(String phone_no) {
 		this.phone_no = phone_no;
+	}
+
+	@Override
+	public String toString() {
+		return "Guard [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", phone_no="
+				+ phone_no + ", hostelName=" + hostelName + "]";
 	}
 }

@@ -23,20 +23,14 @@ const LoginPage = (props) => {
 
   useEffect(() => {
     if(_.isEmpty(props.login)) return;
-    else if(loginAs === "students") {
-      navigate(`/students/${props.login.to}`);
-    }
+    else if(loginAs === "students") navigate(`/students/${props.login.to}`);
     else if(loginAs === "wardens") {
       if(props.login.to === "superadmin") navigate("/superadmin");
       else navigate(`/hostels/${props.login.to}`);
     }
     else if(loginAs === "canteens") console.log("Canteen Detected");
-    else if(loginAs === "guards") {
-      console.log("Guard Detected");
-    navigate(`/guards/${props.login.to}`);
-    }
+    else if(loginAs === "guards") navigate(`/guards/${props.login.to}`);
   }, [props.login, loginAs]);
-
 
   let titleText;
 
