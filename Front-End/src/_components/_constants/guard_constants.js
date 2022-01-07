@@ -1,2 +1,3 @@
-export const CHECK_IN_CHECK_OUT="CKECK IN CHECK OUT";
-export const STUDENT_OUTSIDE="STUDENT OUTSIDE";
+export const CHECK_IN = "CHECK IN";
+export const CHECK_OUT = "CHECK OUT";
+export const STUDENTS_OUTSIDE = "STUDENTS OUTSIDE";

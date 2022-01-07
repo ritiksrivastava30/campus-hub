@@ -1,7 +1,7 @@
 import React from "react";
 
-const StudentOutside = () => {
+const StudentsOutside = () => {
     return <h1>Students Outside</h1>
 }
 
-export default StudentOutside;
+export default StudentsOutside;
