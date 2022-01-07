@@ -1,5 +1,7 @@
 package com.backend.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,5 +19,11 @@ public class CheckInCheckOutService {
 	
 	public String checkOut(int registrationNumber) {
 		return checkInCheckOutDao.checkOut(registrationNumber);
+	}
+	
+	public void sendingEmailToOutsiders() {
+		List<String> outsidersEmail=checkInCheckOutDao.emailsOfOutsideStudents();
+		EmailService obj=new EmailService();
+		obj.sendmail(outsidersEmail);
 	}
 }

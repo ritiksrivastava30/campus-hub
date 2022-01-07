@@ -39,6 +39,7 @@ public class StudentDao extends StarterDao{
 		String query = "SELECT `reg_no`, `password`, students.name, `semester`, `address`, `personal_mob`, `parent_mob`, branch.name, `room_no`, hostels.name, `email`, `gender`, `dob`, `adhaarcard_no`, `blackdots` FROM `students` join `branch` join `hostels` WHERE students.branch_id = branch.id AND students.hostel_id = hostels.id AND hostels.id = ?;";
 		try {
 			List<Student> students = jdbcTemplate.query(query, new StudentRowMapper(), hostelId);
+			
 			return students;
 		}
 		catch(Exception e) {
