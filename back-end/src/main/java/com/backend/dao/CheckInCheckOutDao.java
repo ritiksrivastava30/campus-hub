@@ -21,7 +21,7 @@ public class CheckInCheckOutDao extends StarterDao {
 		if(res == 1) {	
 			return "checked in";
 		}
-		return "Student is already in hostel.";
+		return "error";
 	}
 	
 }

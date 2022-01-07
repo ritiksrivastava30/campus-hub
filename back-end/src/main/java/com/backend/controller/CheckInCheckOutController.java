@@ -11,21 +11,18 @@ import com.backend.service.CheckInCheckOutService;
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 public class CheckInCheckOutController {
-
 	
 	@Autowired
 	CheckInCheckOutService checkInCheckOutService;
 	
-	@PostMapping("/checkOut/{registrationNumber}")
-	public String checkOut(@PathVariable int registrationNumber) {
+	@PostMapping("/checkOut/{hostelName}/{registrationNumber}")
+	public String checkOut(@PathVariable String hostelName, @PathVariable int registrationNumber) {
 		return checkInCheckOutService.checkOut(registrationNumber);
 	}
 	
-	@PostMapping("/checkIn/{registrationNumber}")
-	public String chechIn(@PathVariable int registrationNumber) {
+	@PostMapping("/checkIn/{hostelName}/{registrationNumber}")
+	public String chechIn(@PathVariable String hostelName, @PathVariable int registrationNumber) {
 		return checkInCheckOutService.checkIn(registrationNumber);
 	}
 	
 }
-
-
