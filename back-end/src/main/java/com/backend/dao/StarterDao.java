@@ -74,9 +74,9 @@ public class StarterDao {
 	public void insertDummyStudents() {
 		String que = "INSERT IGNORE INTO `students` (`reg_no`, `password`, `name`, `semester`, `address`, `personal_mob`, `parent_mob`, `branch_id`, `room_no`, `hostel_id`, `email`, `gender`, `dob`, `adhaarcard_no`, `blackdots`) VALUES ('20198018', '20198018', 'YashSanthalia', '6', 'Lakhisarai', '6200075988', '9430578425', '1', '101', '2', 'yash@gmail.com', 'Male', '2000-12-02' , '8393939399393', '0');";
 		jdbcTemplate.update(que);
-		que = "INSERT IGNORE INTO `students` (`reg_no`, `password`, `name`, `semester`, `address`, `personal_mob`, `parent_mob`, `branch_id`, `room_no`, `hostel_id`, `email`, `gender`, `dob`, `adhaarcard_no`, `blackdots`) VALUES ('20198034', '20198034', 'Ritik', '6', 'Allahabad', '7288228287', '8282828827', '2', '203', '2', 'ritik@gmail.com', 'Male', '2000-09-06', '7339939387838', '1');";
+		que = "INSERT IGNORE INTO `students` (`reg_no`, `password`, `name`, `semester`, `address`, `personal_mob`, `parent_mob`, `branch_id`, `room_no`, `hostel_id`, `email`, `gender`, `dob`, `adhaarcard_no`, `blackdots`) VALUES ('20198034', '20198034', 'Ritik', '6', 'Allahabad', '7288228287', '8282828827', '2', '203', '2', 'megha.20198073@mnnit.ac.in', 'Male', '2000-09-06', '7339939387838', '1');";
 		jdbcTemplate.update(que);
-		que = "INSERT IGNORE INTO `students` (`reg_no`, `password`, `name`, `semester`, `address`, `personal_mob`, `parent_mob`, `branch_id`, `room_no`, `hostel_id`, `email`, `gender`, `dob`, `adhaarcard_no`, `blackdots`) VALUES ('20193045', '20193045', 'Stuti', '7', 'MP', '7288228247', '8282828847', '6', '205', '3', 'stuti@gmail.com', 'Female', '1999-11-09', '4439939387838', '0');";
+		que = "INSERT IGNORE INTO `students` (`reg_no`, `password`, `name`, `semester`, `address`, `personal_mob`, `parent_mob`, `branch_id`, `room_no`, `hostel_id`, `email`, `gender`, `dob`, `adhaarcard_no`, `blackdots`) VALUES ('20193045', '20193045', 'Stuti', '7', 'MP', '7288228247', '8282828847', '6', '205', '3', 'megha4595@gmail.com', 'Female', '1999-11-09', '4439939387838', '0');";
 		jdbcTemplate.update(que);
 	}
 
