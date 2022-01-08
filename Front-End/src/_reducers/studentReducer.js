@@ -8,7 +8,6 @@ export default(state = {}, action) => {
         case FETCH_STUDENTS_OF_HOSTEL : return { ...state, ..._.mapKeys(action.payload, "registrationNumber")};
         case ADD_STUDENT    : return {...state, [action.payload.registrationNumber] : action.payload };
         case EDIT_STUDENT   : return {...state, [action.payload.registrationNumber] : action.payload };
-        case FETCH_STUDENTS_OF_HOSTEL : return { ...state, ..._.mapKeys(action.payload, "hostelName")};
         case RESET_STUDENTS : return action.payload;
         default : return state;
     }
