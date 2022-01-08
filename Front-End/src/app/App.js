@@ -13,7 +13,6 @@ import ShowWardens from "../_components/superAdmin/ShowWardens";
 import StudentPage from "../_components/students/StudentPage";
 import FileComplaint from "../_components/students/FileComplaint";
 import Profile from "../_components/students/Profile";
-import Notices from "../_components/students/Notices";
 import CanteenPage from "../_components/canteens/CanteenPage";
 import LoginPage from "../_components/login/LoginPage";
 import GuardPage from "../_components/guards/GuardPage";
@@ -25,11 +24,11 @@ import ShowStudents from "../_components/hostels/ShowStudents";
 import Complaints from "../_components/hostels/Complaints";
 import EditStudent from "../_components/hostels/EditStudent";
 import SearchStudent from "../_components/hostels/SearchStudent";
-import GuardPrivateRoute from "./GuardPrivateRoute";
+
 import SuperAdminPrivateRoute from "./SuperAdminPrivateRoute";
 import HostelPrivateRoute from "./HostelPrivateRoute";
 import StudentPrivateRoute from "./StudentPrivateRoute";
-import AddNotice from "../_components/hostels/AddNotice";
+import GuardPrivateRoute from "./GuardPrivateRoute";
 
 const App = () => {
 
@@ -54,7 +53,6 @@ const App = () => {
           <Route path = "/hostels/:hostelName/complaints" element = { <HostelPrivateRoute> <Complaints/> </HostelPrivateRoute> } />  
           <Route path = "/hostels/:hostelName/editStudent/:regNo" element = { <HostelPrivateRoute> < EditStudent/> </HostelPrivateRoute>} />  
           <Route path = "/hostels/:hostelName/searchStudent" element = { <HostelPrivateRoute> < SearchStudent/> </HostelPrivateRoute>} />  
-          <Route path = "/hostels/:hostelName/addNotice/" element = { <HostelPrivateRoute> <AddNotice /> </HostelPrivateRoute> } /> c 
       </React.Fragment>
     )
   }
@@ -65,7 +63,6 @@ const App = () => {
           <Route path = "/students/:regNo/fileComplaint" element = { <StudentPrivateRoute> <FileComplaint /> </StudentPrivateRoute> } />
           <Route path = "/students/:regNo/profile" element = { <StudentPrivateRoute> <Profile /> </StudentPrivateRoute> } />
           
-          <Route path = "/students/:regNo/notices" element = { <StudentPrivateRoute> <Notices/> </StudentPrivateRoute>} />
       </React.Fragment>
     )
   }

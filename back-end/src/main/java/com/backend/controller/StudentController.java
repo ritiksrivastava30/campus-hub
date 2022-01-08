@@ -1,4 +1,6 @@
 package com.backend.controller;
+
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.backend.pojo.Notice;
 import com.backend.pojo.Student;
 import com.backend.service.StudentService;
 
@@ -56,10 +57,5 @@ public class StudentController {
 	@GetMapping("/students")
 	public List<Student> fetchStudents(){
 		return studentService.fetchStudents();
-	}
-	
-	@GetMapping("/students/notices/{regNo}")
-	public List<Notice> fetchNotices(@PathVariable int regNo){
-		return studentService.fetchNotices(regNo);
 	}
 }
