@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.Scheduled;
 
 import com.backend.dao.CheckInCheckOutDao;
 import com.backend.dao.StarterDao;
@@ -21,6 +22,8 @@ public class BackendApplication implements CommandLineRunner{
 
 	@Autowired
 	private StarterDao starterDao;
+	@Autowired
+	public CheckInCheckOutDao checkInCheckOutDao;
 	public static void main(String[] args) {
 		SpringApplication.run(BackendApplication.class, args);
 	}
@@ -28,11 +31,13 @@ public class BackendApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		starterDao.createInitialTables();
-//		sendingEmailToOutsiders();
+//		starterDao.insertDummyStudents(); just for checking
 	}
-//	public void sendingEmailToOutsiders() {
-//		List<String> outsidersEmail=checkInCheckOutDao.emailsOfOutsideStudents();
-//		EmailService obj=new EmailService();
-//		obj.sendmail(outsidersEmail);
-//	}
+	
+	@Scheduled(cron="0 19 12 * * *")
+	void someJob() throws InterruptedException{
+		List<String> outsidersEmail=checkInCheckOutDao.emailsOfOutsideStudents();
+		EmailService obj=new EmailService();
+		obj.sendmail(outsidersEmail);
+	}
 }
