@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { Button } from "../_utility_components/Button";
 import {resetStatus, resetLogin } from "../../_actions/utility_actions";
 import { fetchStudentsOfHostel, resetStudents } from "../../_actions/student_actions";
-import {ADD_STUDENT,EDIT_STUDENT,SHOW_STUDENTS,COMPLAINTS,ADD_NOTICE, SEARCH_STUDENT} from "../_constants/hostel_constants";
+import {ADD_STUDENT,SHOW_STUDENTS,COMPLAINTS,ADD_NOTICE, SEARCH_STUDENT} from "../_constants/hostel_constants";
 
 const HostelPage = (props) => {
     

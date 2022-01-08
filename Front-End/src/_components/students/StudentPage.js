@@ -13,8 +13,9 @@ const StudentPage = (props) => {
 
     useEffect(() => {
         props.resetStatus();
-        props.fetchStudentByRegistrationNumber(registrationNumber);
         props.fetchNotices(registrationNumber);
+        props.fetchStudentByRegistrationNumber(registrationNumber);
+        
     }, []);
 
     const reset = () => {
