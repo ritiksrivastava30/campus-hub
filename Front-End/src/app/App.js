@@ -23,6 +23,7 @@ import AddStudent from "../_components/hostels/AddStudent";
 import ShowStudents from "../_components/hostels/ShowStudents";
 import Complaints from "../_components/hostels/Complaints";
 import EditStudent from "../_components/hostels/EditStudent";
+import SearchStudent from "../_components/hostels/SearchStudent";
 
 import SuperAdminPrivateRoute from "./SuperAdminPrivateRoute";
 import HostelPrivateRoute from "./HostelPrivateRoute";
@@ -51,6 +52,7 @@ const App = () => {
           <Route path = "/hostels/:hostelName/showStudents" element = { <HostelPrivateRoute> <ShowStudents /> </HostelPrivateRoute>} />  
           <Route path = "/hostels/:hostelName/complaints" element = { <HostelPrivateRoute> <Complaints/> </HostelPrivateRoute> } />  
           <Route path = "/hostels/:hostelName/editStudent/:regNo" element = { <HostelPrivateRoute> < EditStudent/> </HostelPrivateRoute>} />  
+          <Route path = "/hostels/:hostelName/searchStudent" element = { <HostelPrivateRoute> < SearchStudent/> </HostelPrivateRoute>} />  
       </React.Fragment>
     )
   }
@@ -60,6 +62,7 @@ const App = () => {
       <React.Fragment>
           <Route path = "/students/:regNo/fileComplaint" element = { <StudentPrivateRoute> <FileComplaint /> </StudentPrivateRoute> } />
           <Route path = "/students/:regNo/profile" element = { <StudentPrivateRoute> <Profile /> </StudentPrivateRoute> } />
+          
       </React.Fragment>
     )
   }

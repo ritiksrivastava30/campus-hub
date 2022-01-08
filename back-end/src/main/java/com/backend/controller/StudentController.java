@@ -47,6 +47,13 @@ public class StudentController {
 		return studentService.fetchStudentByRegistrationNumber(registrationNumber);
 	}
 	
+	@GetMapping("/student/{hostelName}/{registrationNumber}")
+	public Student fetchStudentByRegistrationNumberOfSpecificHostel(@PathVariable String hostelName, @PathVariable int registrationNumber) {
+		System.out.println(hostelName);
+		System.out.println(registrationNumber);
+		return studentService.fetchStudentByRegistrationNumberOfSpecificHostel(registrationNumber);
+	}
+	
 	@GetMapping("/students")
 	public List<Student> fetchStudents(){
 		return studentService.fetchStudents();

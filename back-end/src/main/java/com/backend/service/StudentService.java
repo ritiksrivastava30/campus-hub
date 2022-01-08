@@ -34,6 +34,10 @@ public class StudentService {
 		return studentDao.fetchStudentByRegistrationNumber(registrationNumber);
 	}
 	
+	public Student fetchStudentByRegistrationNumberOfSpecificHostel(int registrationNumber) {
+		return studentDao.fetchStudentByRegistrationNumberOfSpecificHostel(registrationNumber);
+	}
+	
 	public List<Student> fetchStudents() {
 		return studentDao.fetchStudents();
 	}
