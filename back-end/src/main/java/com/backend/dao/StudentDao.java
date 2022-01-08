@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Repository;
 
+import com.backend.pojo.Notice;
 import com.backend.pojo.Student;
 
 @Repository
@@ -47,10 +48,19 @@ public class StudentDao extends StarterDao{
 		}
 	}
 	
+	public List<Notice> fetchNotices(int regNo){
+		String que = "select `hostel_id` from `students` where reg_no = ?;";
+		int id = (int)jdbcTemplate.queryForObject(que,Integer.class, regNo);
+		que="SELECT * from `notices` WHERE `hostel_id` = ?;";
+		List<Notice> st=jdbcTemplate.query(que, new NoticeRowMapper(),id);
+		return st;
+	}
+	
 	public Student updateStudent(int registrationNumber, Student s) {
 		int branch_id = getBranchId(s.getBranch());
 		int hostel_id = getHostelId(s.getHostelName());
 		String query = "update `students` set `reg_no` = ? ,`password` = ? ,`name` = ?,`semester` = ?,`address` = ?,`personal_mob` = ? ,`parent_mob` =  ? ,`branch_id` = ? ,`room_no` = ?,`hostel_id` = ?,`email` = ?,`gender` = ?,`dob` = ?,`adhaarcard_no` = ? ,`blackdots` = ? where `reg_no` = ?;";
+
 		try {
 			jdbcTemplate.update(query, s.getRegistrationNumber() ,s.getPassword() ,s.getName(), s.getSemester(), s.getAddress(), s.getPhoneNumber(), s.getParentPhoneNumber(), branch_id, s.getRoomNo(), hostel_id, s.getEmail(), s.getGender(), s.getDob(), s.getAadharCardNo(), s.getBlackdots(), registrationNumber);
 			return fetchStudentByRegistrationNumber(s.getRegistrationNumber());

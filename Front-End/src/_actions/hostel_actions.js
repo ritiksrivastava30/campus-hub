@@ -1,6 +1,6 @@
 import _ from "lodash";
 
-import { ADD_HOSTEL, EDIT_HOSTEL, FETCH_HOSTELS, RESET_HOSTELS } from "./_types/hostel_types";
+import { ADD_HOSTEL, EDIT_HOSTEL, FETCH_HOSTELS, RESET_HOSTELS, ADD_NOTICE } from "./_types/hostel_types";
 import { LOGIN_HOSTEL } from "./_types/login_types";
 import api from "../apis/main";
 
@@ -29,6 +29,20 @@ export const addHostel = (formValues) => async dispatch => {
     }
     dispatch({ type : "STATUS", payload : { status:"Success", description : `${response.data.name}` } }); 
     dispatch({ type : ADD_HOSTEL, payload : response.data });
+}
+export const addNotice = (hostelName, formValues) => async dispatch => {
+    console.log(ADD_NOTICE);
+    console.log(formValues);
+    console.log(hostelName);
+    const response = await api.post(`/hostels/addNotice/${hostelName}/${formValues.notice}`);
+
+    if(_.isEmpty(response.data)) {
+        dispatch({ type : "STATUS", payload : { status:"Error", description : "Error in uploading notice" } }); 
+        return; 
+    }
+
+    dispatch({ type : "STATUS", payload : { status:"Success", description : `${response.data.name}` } }); 
+    dispatch({ type : ADD_NOTICE, payload : response.data });
 }
 
 export const editHostel = (id, formValues) => async dispatch => {

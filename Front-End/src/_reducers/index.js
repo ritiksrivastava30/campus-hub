@@ -8,6 +8,8 @@ import loginReducer from "./loginReducer";
 import statusReducer from "./statusReducer";
 import wardenReducer from "./wardenReducer";
 import branchReducer from "./branchReducer";
+import noticeReducer from "./noticeReducer";
+//import Notices from "../_components/students/Notices";
 
 export default combineReducers({
     form : reducer,
@@ -18,5 +20,6 @@ export default combineReducers({
     canteen : canteenReducer,
     status : statusReducer,
     wardens : wardenReducer,
-    branch : branchReducer
+    branch : branchReducer,
+    notices : noticeReducer
 });
