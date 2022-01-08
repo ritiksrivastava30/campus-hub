@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { Link, Outlet, useParams } from "react-router-dom";
 import { connect } from "react-redux";
+
 import { Button } from "../_utility_components/Button";
-import { fetchStudentByRegistrationNumber, resetStudents, fetchNotices, resetNotices } from "../../_actions/student_actions";
+import {FILE_COMPLAINT, PROFILE } from "../_constants/student_constants";
+import { fetchStudentByRegistrationNumber, resetStudents } from "../../_actions/student_actions";
 import { resetStatus, resetLogin } from "../../_actions/utility_actions";
-import {FILE_COMPLAINT,EDIT_DETAILS, PROFILE, NOTICES } from "../_constants/student_constants";
 
 const StudentPage = (props) => {
 
@@ -13,15 +14,12 @@ const StudentPage = (props) => {
 
     useEffect(() => {
         props.resetStatus();
-        props.fetchNotices(registrationNumber);
         props.fetchStudentByRegistrationNumber(registrationNumber);
-        
     }, []);
 
     const reset = () => {
         props.resetLogin();
         props.resetStudents();
-        props.resetNotices();
     }
 
     return (
@@ -32,9 +30,6 @@ const StudentPage = (props) => {
             </Link>
             <Link to = { `/students/${registrationNumber}/profile`} >
                 <Button text = {PROFILE} />
-            </Link>
-            <Link to = { `/students/${registrationNumber}/notices`}>
-                <Button text = {NOTICES} />
             </Link>
             <Link to = "/">
                 <Button onClick = { reset } text = "LOG OUT" />
@@ -49,6 +44,6 @@ const mapStateToProps = (state) => {
 }
 
 const actionCreators = {
-    fetchStudentByRegistrationNumber, resetLogin, resetStatus, resetStudents,fetchNotices, resetNotices
+    fetchStudentByRegistrationNumber, resetLogin, resetStatus, resetStudents
 }
 export default connect( mapStateToProps, actionCreators )(StudentPage);

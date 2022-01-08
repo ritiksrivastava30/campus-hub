@@ -1,4 +1,4 @@
- package com.backend.controller;
+package com.backend.controller;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.backend.pojo.Hostel;
-import com.backend.pojo.Notice;
 import com.backend.service.HostelService;
 
 @RestController
@@ -24,12 +23,6 @@ public class HostelController {
 	@PostMapping("/hostels")
 	public Hostel addHostel(@RequestBody Hostel hostel) {
 		return hostelService.addHostel(hostel);
-	}
-	
-	@PostMapping("/hostels/addNotice/{hostelName}/{notice}")
-	public Notice addNotice(@PathVariable String hostelName, @PathVariable String notice) {
-		System.out.println("in add notice");
-		return hostelService.addNotice(hostelName, notice);
 	}
 	
 	@PatchMapping("/hostels/{id}")
