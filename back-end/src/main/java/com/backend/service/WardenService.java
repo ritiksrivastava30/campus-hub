@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.backend.dao.WardenDao;
+import com.backend.pojo.Notice;
+import com.backend.pojo.Student;
 import com.backend.pojo.Warden;
 
 @Service

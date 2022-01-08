@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.backend.dao.HostelDao;
 import com.backend.pojo.Hostel;
+import com.backend.pojo.Notice;
 
 @Service
 public class HostelService {
@@ -24,5 +25,9 @@ public class HostelService {
 	
 	public Hostel updateHostel(int id, Hostel hostel) {
 		return hostelDao.updateHostel(id, hostel);
+	}
+	
+	public Notice addNotice(String hostelName, String notice) {
+		return hostelDao.addNotice(hostelName, notice);
 	}
 }
