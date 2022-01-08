@@ -6,7 +6,6 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.backend.pojo.Hostel;
-import com.backend.pojo.Notice;
 
 @Repository
 public class HostelDao extends StarterDao {
@@ -22,22 +21,6 @@ public class HostelDao extends StarterDao {
 			RowMapper<Hostel> rowMapper = new HostelRowMapper();
 			Hostel addedHostel = jdbcTemplate.queryForObject(query, rowMapper, hostel.getName());
 			return addedHostel;
-		}catch(Exception e) {
-			return null;
-		}
-	}
-	
-	public Notice addNotice(String hostelName, String notice) {
-		System.out.println("In notice");
-		String query = "select `id` from `hostels` where name = ?;";
-		int id = (int)jdbcTemplate.queryForObject(query,Integer.class, hostelName);
-		query = "INSERT INTO `notices`(`notice`, `hostel_id`) values (?, ?);";
-		try {
-			jdbcTemplate.update(query, notice, id);
-			query = "SELECT * from `hostels` WHERE `name` = ?;";
-			RowMapper<Notice> rowMapper = new NoticeRowMapper();
-			Notice addedNotice = jdbcTemplate.queryForObject(query, rowMapper, hostelName);
-			return addedNotice;
 		}catch(Exception e) {
 			return null;
 		}
