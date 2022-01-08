@@ -3,9 +3,9 @@ import { Link, Outlet } from "react-router-dom";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Button } from "../_utility_components/Button";
-import { resetStudents } from "../../_actions/student_actions";
-import { resetStatus, resetLogin } from "../../_actions/utility_actions";
-import { ADD_STUDENT, ALL_STUDENTS, COMPLAINTS, SEARCH_STUDENT } from "../_constants/hostel_constants";
+import {resetStatus, resetLogin } from "../../_actions/utility_actions";
+import { fetchStudentsOfHostel, resetStudents } from "../../_actions/student_actions";
+import {ADD_STUDENT,EDIT_STUDENT,SHOW_STUDENTS,COMPLAINTS,ADD_NOTICE, SEARCH_STUDENT} from "../_constants/hostel_constants";
 
 const HostelPage = (props) => {
     
@@ -14,6 +14,7 @@ const HostelPage = (props) => {
 
     useEffect(() => {
         props.resetStatus();
+        props.fetchStudentsOfHostel(hostelName);
     }, []);
 
     const reset = () => {
@@ -28,13 +29,19 @@ const HostelPage = (props) => {
                 <Button text = {ADD_STUDENT} />
             </Link>
             <Link to = {`/hostels/${hostelName}/showStudents`}>
-                <Button text = {ALL_STUDENTS} />
+                <Button text = {SHOW_STUDENTS} />
+            </Link>
+            <Link to = {`/hostels/${hostelName}/editStudent`}>
+                <Button text = {EDIT_STUDENT} />
             </Link>
             <Link to = {`/hostels/${hostelName}/complaints`}>
                 <Button text = {COMPLAINTS} />
             </Link>
             <Link to = {`/hostels/${hostelName}/searchStudent`}>
                 <Button text = {SEARCH_STUDENT} />
+            </Link>
+            <Link to = {`/hostels/${hostelName}/addNotice`}>
+                <Button text = {ADD_NOTICE} />
             </Link>
             <Link to = "/">
                 <Button onClick = { reset } text = "LOG OUT" />
@@ -44,7 +51,7 @@ const HostelPage = (props) => {
     );
 }
 const actionCreators = {
-    resetStudents, resetStatus, resetLogin
+    resetStudents, resetStatus, resetLogin, fetchStudentsOfHostel
 }
 
 export default connect(null, actionCreators )(HostelPage);
