@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.backend.dao.StudentDao;
+import com.backend.pojo.Notice;
 import com.backend.pojo.Student;
 
 @Service
@@ -40,5 +41,9 @@ public class StudentService {
 	
 	public List<Student> fetchStudents() {
 		return studentDao.fetchStudents();
+	}
+	
+	public List<Notice> fetchNotices(int regNo){
+		return studentDao.fetchNotices(regNo);
 	}
 }
