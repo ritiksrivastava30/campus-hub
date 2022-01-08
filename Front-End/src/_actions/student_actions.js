@@ -51,9 +51,25 @@ export const editStudent = (registrationNumber, formValues) => async dispatch =>
     dispatch({ type : EDIT_STUDENT, payload : response.data });
 }
 
+export const fetchStudentByRegistrationNumberOfSpecificHostel = (registrationNumber, hostelName) => async dispatch => {
+    const response = await api.get(`/student/${hostelName}/${registrationNumber}`);
+    
+    if(_.isEmpty(response.data)) {
+        dispatch({ type : "STATUS", payload : { status:"Error", description : "Check your credentials" } }); 
+        return; 
+    }
+
+    dispatch({ type : FETCH_STUDENT, payload : response.data });
+}
+
 export const fetchStudentByRegistrationNumber = (registrationNumber) => async dispatch => {
     const response = await api.get(`/students/${registrationNumber}`);
     
+    if(_.isEmpty(response.data)) {
+        dispatch({ type : "STATUS", payload : { status:"Error", description : "Check your credentials" } }); 
+        return; 
+    }
+
     dispatch({ type : FETCH_STUDENT, payload : response.data });
 }
 

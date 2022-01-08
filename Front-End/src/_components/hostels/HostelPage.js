@@ -4,8 +4,8 @@ import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Button } from "../_utility_components/Button";
 import { resetStudents } from "../../_actions/student_actions";
-import {resetStatus, resetLogin } from "../../_actions/utility_actions";
-import {ADD_STUDENT,EDIT_STUDENT,ALL_STUDENTS,COMPLAINTS} from "../_constants/hostel_constants";
+import { resetStatus, resetLogin } from "../../_actions/utility_actions";
+import { ADD_STUDENT, ALL_STUDENTS, COMPLAINTS, SEARCH_STUDENT } from "../_constants/hostel_constants";
 
 const HostelPage = (props) => {
     
@@ -32,6 +32,9 @@ const HostelPage = (props) => {
             </Link>
             <Link to = {`/hostels/${hostelName}/complaints`}>
                 <Button text = {COMPLAINTS} />
+            </Link>
+            <Link to = {`/hostels/${hostelName}/searchStudent`}>
+                <Button text = {SEARCH_STUDENT} />
             </Link>
             <Link to = "/">
                 <Button onClick = { reset } text = "LOG OUT" />

@@ -3,7 +3,7 @@ import { Link, Outlet } from "react-router-dom";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Button } from "../_utility_components/Button";
-import { CHECK_IN, CHECK_OUT,STUDENTS_OUTSIDE } from "../_constants/guard_constants";
+import { CHECK_IN, CHECK_OUT, STUDENTS_OUTSIDE } from "../_constants/guard_constants";
 import { resetLogin, resetStatus } from "../../_actions/utility_actions";
 
 const GuardPage = (props) => {

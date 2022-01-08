@@ -70,6 +70,17 @@ public class StudentDao extends StarterDao{
 		}
 	}
 	
+	public Student fetchStudentByRegistrationNumberOfSpecificHostel(int registrationNumber) {
+		String query = "SELECT `reg_no`, `password`, students.name, `semester`, `address`, `personal_mob`, `parent_mob`, branch.name, `room_no`, hostels.name, `email`, `gender`, `dob`, `adhaarcard_no`, `blackdots` FROM `students` join `branch` join `hostels` WHERE `reg_no` = ? AND students.branch_id = branch.id AND students.hostel_id = hostels.id;";
+		try {
+			Student student = jdbcTemplate.queryForObject(query, new StudentRowMapper(), registrationNumber);
+			return student;
+		}
+		catch(EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
+	
 	public List<Student> fetchStudents(){
 		String query = "SELECT `reg_no`, `password`, students.name, `semester`, `address`, `personal_mob`, `parent_mob`, branch.name, `room_no`, hostels.name, `email`, `gender`, `dob`, `adhaarcard_no`, `blackdots` FROM `students` join `branch` join `hostels` WHERE students.branch_id = branch.id AND students.hostel_id = hostels.id;";
 		try {
