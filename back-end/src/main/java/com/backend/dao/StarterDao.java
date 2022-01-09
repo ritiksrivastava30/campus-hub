@@ -29,10 +29,6 @@ public class StarterDao {
 		jdbcTemplate.execute(que);
 		que="CREATE TABLE IF NOT EXISTS `check_out` (`reg_no` INT NOT NULL, `check_out_time` TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, PRIMARY KEY (`reg_no`), FOREIGN KEY(`reg_no`) REFERENCES students(`reg_no`));";
 		jdbcTemplate.execute(que);	
-		que="CREATE TABLE IF NOT EXISTS `messmenu` (`id` INT NOT NULL AUTO_INCREMENT,`hostel_id` INT NOT NULL,`day` VARCHAR(50) NOT NULL, `breakfast` VARCHAR(255) NULL DEFAULT 'not set',`lunch` VARCHAR(255) NULL DEFAULT 'not set',`dinner` VARCHAR(255) NULL DEFAULT 'not set',PRIMARY KEY (`id`),FOREIGN KEY(`hostel_id`) REFERENCES `hostels`(`id`));";
-		jdbcTemplate.execute(que);
-		
-		
 		que="INSERT IGNORE INTO `guards` (`name`, `email`, `password`, `phone_no`, `hostel_id`) VALUES ('Ramesh', 'ramesh@mnnit.ac.in', 'ramesh_123', '12345667', '2');";
 		jdbcTemplate.execute(que);
 		que="INSERT IGNORE INTO `guards` (`name`, `email`, `password`, `phone_no`, `hostel_id`) VALUES ('Suresh', 'suresh@mnnit.ac.in', 'suresh_123', '12345667', '3');";
