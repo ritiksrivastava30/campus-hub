@@ -21,7 +21,7 @@ const StudentForm = (props) => {
     <div>
       <form onSubmit = { props.handleSubmit(props.onSubmit ) }>
         <Field name="registrationNumber" component={InputField} label="REGISTRATION NO" />
-        <Field name="password" component={InputField} label="PASSWORD" />
+        <Field name="password" component={InputField}  type = "password" label="PASSWORD" />
         <Field name="name" component={InputField} label="NAME" />
         <Field name="semester" component={InputField} label="SEMESTER" />
         <Field name="address" component={InputField} label="ADDRESS" />
@@ -67,7 +67,7 @@ const validate = (formValues) => {
   if (!formValues.dob) errors.dob = "Enter a valid Date of Birth";
   if (!formValues.gender) errors.gender = "Enter a valid gender";
   if (!formValues.aadharCardNo) errors.aadharCardNo = "Enter a valid Aadhar No.";
-  if (!formValues.blackdots) errors.blackdots = "Enter valid blackdots";
+  if (!formValues.blackdots) errors.blackdots = "Enter a valid blackdots";
   return errors;
 };
 

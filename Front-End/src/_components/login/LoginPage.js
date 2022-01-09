@@ -52,7 +52,7 @@ const LoginPage = (props) => {
       <Title text={titleText} />
       <form onSubmit={props.handleSubmit(onSubmit)} >
         <Field name="userName" component={InputField} label="Username" />
-        <Field name="password" component={InputField} label="Password" />
+        <Field name="password" type = "password" component={InputField} label="Password" />
         <Button text="Submit" />      
       </form>
       {props.status.status === "Error" ? <ErrorModal /> : null }
