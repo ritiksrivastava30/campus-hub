@@ -20,7 +20,7 @@ const WardenForm = (props) => {
       <form onSubmit={props.handleSubmit(props.onSubmit)}>
         <Field name="name" component={InputField} label="NAME" />
         <Field name="email" component={InputField} label="EMAIL ID" />
-        <Field name="password" component={InputField} label="PASSWORD" />
+        <Field name="password" component={InputField} label="PASSWORD"  type = "password"  />
         <Field name="phoneNumber" component={InputField} label="PHONE NUMBER" />
         <div>
           <label>HOSTEL</label>

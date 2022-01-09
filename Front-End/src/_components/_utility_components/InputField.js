@@ -14,6 +14,7 @@ const InputField = (formProps) => {
       <input
         onChange={formProps.input.onChange}
         value={formProps.input.value}
+        type = {formProps.type}
       />
       {renderError(formProps.meta)}
     </div>
