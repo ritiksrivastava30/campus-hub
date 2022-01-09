@@ -13,8 +13,6 @@ public class HostelDao extends StarterDao {
 	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-	@Autowired
-	private MessMenuDao messMenuDao;
 	
 	public Hostel addHostel(Hostel hostel) {
 		String query = "INSERT INTO `hostels`(`name`, `capacity`, `status`) values (?, ?, ?);";
@@ -23,14 +21,11 @@ public class HostelDao extends StarterDao {
 			query = "SELECT * from `hostels` WHERE `name` = ?;";
 			RowMapper<Hostel> rowMapper = new HostelRowMapper();
 			Hostel addedHostel = jdbcTemplate.queryForObject(query, rowMapper, hostel.getName());
-			messMenuDao.addMenuForNewHostel(addedHostel.getId());
 			return addedHostel;
 		}catch(Exception e) {
 			return null;
 		}
-		
 	}
-	
 	
 	public Notice addNotice(String hostelName, String notice) {
 		System.out.println("In notice");
