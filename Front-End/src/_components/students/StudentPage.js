@@ -5,6 +5,7 @@ import { Button } from "../_utility_components/Button";
 import { fetchStudentByRegistrationNumber, resetStudents, fetchNotices, resetNotices } from "../../_actions/student_actions";
 import { resetStatus, resetLogin } from "../../_actions/utility_actions";
 import {FILE_COMPLAINT,EDIT_DETAILS, PROFILE, NOTICES } from "../_constants/student_constants";
+import { MESS_MENU } from "../_constants/hostel_constants";
 
 const StudentPage = (props) => {
 
@@ -35,6 +36,9 @@ const StudentPage = (props) => {
             </Link>
             <Link to = { `/students/${registrationNumber}/notices`}>
                 <Button text = {NOTICES} />
+            </Link>
+            <Link to = { `/students/${registrationNumber}/messMenu`}>
+                <Button text = {MESS_MENU} />
             </Link>
             <Link to = "/">
                 <Button onClick = { reset } text = "LOG OUT" />

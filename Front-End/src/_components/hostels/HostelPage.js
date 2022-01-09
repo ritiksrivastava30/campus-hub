@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { Button } from "../_utility_components/Button";
 import {resetStatus, resetLogin } from "../../_actions/utility_actions";
 import { fetchStudentsOfHostel, resetStudents } from "../../_actions/student_actions";
-import {ADD_STUDENT,SHOW_STUDENTS,COMPLAINTS,ADD_NOTICE, SEARCH_STUDENT} from "../_constants/hostel_constants";
+import { ADD_STUDENT,SHOW_STUDENTS,COMPLAINTS,ADD_NOTICE, SEARCH_STUDENT, MESS_MENU } from "../_constants/hostel_constants";
 
 const HostelPage = (props) => {
     
@@ -38,6 +38,9 @@ const HostelPage = (props) => {
             </Link>
             <Link to = {`/hostels/${hostelName}/addNotice`}>
                 <Button text = {ADD_NOTICE} />
+            </Link>
+            <Link to = {`/hostels/${hostelName}/messMenu`}>
+                <Button text = {MESS_MENU} />
             </Link>
             <Link to = "/">
                 <Button onClick = { reset } text = "LOG OUT" />

@@ -30,6 +30,8 @@ import SuperAdminPrivateRoute from "./SuperAdminPrivateRoute";
 import HostelPrivateRoute from "./HostelPrivateRoute";
 import StudentPrivateRoute from "./StudentPrivateRoute";
 import AddNotice from "../_components/hostels/AddNotice";
+import MessMenu from "../_components/mess/MessMenu";
+
 
 const App = () => {
 
@@ -54,7 +56,8 @@ const App = () => {
           <Route path = "/hostels/:hostelName/complaints" element = { <HostelPrivateRoute> <Complaints/> </HostelPrivateRoute> } />  
           <Route path = "/hostels/:hostelName/editStudent/:regNo" element = { <HostelPrivateRoute> < EditStudent/> </HostelPrivateRoute>} />  
           <Route path = "/hostels/:hostelName/searchStudent" element = { <HostelPrivateRoute> < SearchStudent/> </HostelPrivateRoute>} />  
-          <Route path = "/hostels/:hostelName/addNotice/" element = { <HostelPrivateRoute> <AddNotice /> </HostelPrivateRoute> } /> c 
+          <Route path = "/hostels/:hostelName/addNotice" element = { <HostelPrivateRoute> <AddNotice /> </HostelPrivateRoute> } />
+          <Route path = "/hostels/:hostelName/messMenu" element = { <HostelPrivateRoute> <MessMenu /> </HostelPrivateRoute> } />
       </React.Fragment>
     )
   }
@@ -64,8 +67,8 @@ const App = () => {
       <React.Fragment>
           <Route path = "/students/:regNo/fileComplaint" element = { <StudentPrivateRoute> <FileComplaint /> </StudentPrivateRoute> } />
           <Route path = "/students/:regNo/profile" element = { <StudentPrivateRoute> <Profile /> </StudentPrivateRoute> } />
-          
           <Route path = "/students/:regNo/notices" element = { <StudentPrivateRoute> <Notices/> </StudentPrivateRoute>} />
+          <Route path = "/students/:regNo/messMenu" element = { <StudentPrivateRoute> <MessMenu /> </StudentPrivateRoute>} />
       </React.Fragment>
     )
   }
