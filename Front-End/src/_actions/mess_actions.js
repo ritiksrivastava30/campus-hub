@@ -4,12 +4,11 @@ import api from "../apis/main";
 export const fetchMenu = (hostelName) => async dispatch => {
     const response = await api.get(`/menu/${hostelName}`);
 
-    console.log(response.data);
     dispatch({ type : FETCH_MENU, payload : response.data });
 }
 
-export const changeMenu = (hostelName, day, time, menu) => async dispatch => {
-    const response = await api.patch(`/menu/${hostelName}/${day}/${time}/${menu}`);
+export const changeMenu = (hostelName, day, time, updatedItem) => async dispatch => {
+    const response = await api.patch(`/menu/${hostelName}/${day}/${time}/${updatedItem}`);
 
     console.log(response.data);
     dispatch({ type : FETCH_MENU, payload : response.data })
