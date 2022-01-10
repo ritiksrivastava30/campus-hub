@@ -28,7 +28,6 @@ public class HostelController {
 	
 	@PostMapping("/hostels/addNotice/{hostelName}/{notice}")
 	public Notice addNotice(@PathVariable String hostelName, @PathVariable String notice) {
-		System.out.println("in add notice");
 		return hostelService.addNotice(hostelName, notice);
 	}
 	

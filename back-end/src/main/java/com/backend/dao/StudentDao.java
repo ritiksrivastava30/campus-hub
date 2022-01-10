@@ -2,7 +2,9 @@ package com.backend.dao;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import com.backend.pojo.Notice;
@@ -11,24 +13,31 @@ import com.backend.pojo.Student;
 @Repository
 public class StudentDao extends StarterDao{
 	
-	public String studentLogin(String reg_no,String password) {
-		String query = "SELECT `reg_no` FROM `students` WHERE `reg_no` = '" +Integer.parseInt(reg_no)+ "' AND `password` = '" + password +"';";
-		String ss="";
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
+	public String studentLogin(String reg_no, String password) {
+		
+		String query = "Select password from students where reg_no = ?";
 		try {
-			ss = (String)jdbcTemplate.queryForObject(query,String.class);
+			String encodedPassword = (String)jdbcTemplate.queryForObject(query,String.class, reg_no);
+			if(passwordEncoder.matches(password, encodedPassword)){
+				return reg_no;
+			}
+			return "error";
+		}catch(Exception e) {
+			return "error";
 		}
-		catch(EmptyResultDataAccessException e) {
-			ss = "error";
-		}
-		return ss;
+		
 	}
 	
 	public Student addStudent(Student s) {
+		String encodedPassword = passwordEncoder.encode(s.getPassword());
 		int branch_id = getBranchId(s.getBranch());
 		int hostel_id = getHostelId(s.getHostelName());
 		String query = "INSERT INTO `students` (`reg_no`, `password`, `name`, `semester`, `address`, `personal_mob`, `parent_mob`, `branch_id`, `room_no`, `hostel_id`, `email`, `gender`, `dob`, `adhaarcard_no`, `blackdots`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 		try {
-			jdbcTemplate.update(query, s.getRegistrationNumber(),s.getPassword(),s.getName(),s.getSemester(),s.getAddress(),s.getPhoneNumber(),s.getParentPhoneNumber(), branch_id, s.getRoomNo(), hostel_id, s.getEmail(),s.getGender(),s.getDob(),s.getAadharCardNo(),s.getBlackdots());
+			jdbcTemplate.update(query, s.getRegistrationNumber(), encodedPassword, s.getName(),s.getSemester(),s.getAddress(),s.getPhoneNumber(),s.getParentPhoneNumber(), branch_id, s.getRoomNo(), hostel_id, s.getEmail(),s.getGender(),s.getDob(),s.getAadharCardNo(),s.getBlackdots());
 			return fetchStudentByRegistrationNumber(s.getRegistrationNumber());
 		}catch(Exception e) {
 			return null;
@@ -57,12 +66,13 @@ public class StudentDao extends StarterDao{
 	}
 	
 	public Student updateStudent(int registrationNumber, Student s) {
+		String encodedPassword = passwordEncoder.encode(s.getPassword());
 		int branch_id = getBranchId(s.getBranch());
 		int hostel_id = getHostelId(s.getHostelName());
 		String query = "update `students` set `reg_no` = ? ,`password` = ? ,`name` = ?,`semester` = ?,`address` = ?,`personal_mob` = ? ,`parent_mob` =  ? ,`branch_id` = ? ,`room_no` = ?,`hostel_id` = ?,`email` = ?,`gender` = ?,`dob` = ?,`adhaarcard_no` = ? ,`blackdots` = ? where `reg_no` = ?;";
 
 		try {
-			jdbcTemplate.update(query, s.getRegistrationNumber() ,s.getPassword() ,s.getName(), s.getSemester(), s.getAddress(), s.getPhoneNumber(), s.getParentPhoneNumber(), branch_id, s.getRoomNo(), hostel_id, s.getEmail(), s.getGender(), s.getDob(), s.getAadharCardNo(), s.getBlackdots(), registrationNumber);
+			jdbcTemplate.update(query, s.getRegistrationNumber() , encodedPassword, s.getName(), s.getSemester(), s.getAddress(), s.getPhoneNumber(), s.getParentPhoneNumber(), branch_id, s.getRoomNo(), hostel_id, s.getEmail(), s.getGender(), s.getDob(), s.getAadharCardNo(), s.getBlackdots(), registrationNumber);
 			return fetchStudentByRegistrationNumber(s.getRegistrationNumber());
 		}catch (Exception e) {
 			return null;
