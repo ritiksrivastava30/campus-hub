@@ -33,7 +33,6 @@ public class WardenController {
 	
 	@PatchMapping("/wardens/{id}")
 	public Warden updateWarden(@PathVariable int id, @RequestBody Warden warden) {
-		System.out.println(warden);
 		return wardenService.updateWarden(id, warden);
 	}
 	
