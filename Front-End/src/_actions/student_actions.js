@@ -11,7 +11,9 @@ export const loginStudent = (formValues) => async dispatch => {
         dispatch({ type : "STATUS", payload : { status:"Error", description : "Check your credentials." } }); 
         return; 
     }
-
+    localStorage.setItem("as", "student");
+    localStorage.setItem("to", response.data);
+    
     dispatch({ type : "STATUS", payload : { status:"Success", description : `${response.data}` } }); 
     dispatch({ type : LOGIN_STUDENT, payload : response.data });
 }
@@ -86,4 +88,9 @@ export const resetStudents = () => async dispatch => {
 
 export const resetNotices = () => async dispatch => {
     dispatch ({ type : RESET_NOTICES, payload : {} });
+}
+
+export const loginStudentThroughLocalStorage = (registrationNumber) => async dispatch => {
+    
+    dispatch({ type : LOGIN_STUDENT, payload : registrationNumber });
 }

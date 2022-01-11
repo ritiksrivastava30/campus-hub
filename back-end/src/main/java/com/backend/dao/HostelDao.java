@@ -5,6 +5,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import com.backend.dao.rowmappers.HostelRowMapper;
+import com.backend.dao.rowmappers.NoticeRowMapper;
 import com.backend.pojo.Hostel;
 import com.backend.pojo.Notice;
 

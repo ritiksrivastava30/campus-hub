@@ -1,14 +1,15 @@
+import _ from "lodash";
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
 import { fetchMenu, resetMenu } from "../../_actions/mess_actions";
-import { fetchStudentByRegistrationNumber } from "../../_actions/student_actions";
 import ChangeMessMenu from "./ChangeMessMenu";
 import MenuTable from "./MenuTable";
 
 const MessMenu = ( props ) => {
 
     useEffect(() => {
+        if(_.isEmpty(props.student)) return;
         let hostelName;
         if(props.login.as == "student"){
             hostelName = props.student.hostelName
@@ -20,7 +21,7 @@ const MessMenu = ( props ) => {
 
         return () => props.resetMenu();
 
-    }, []);
+    }, [props.login, props.student]);
 
     const menu = Object.values(props.menu);
 

@@ -12,6 +12,9 @@ export const loginHostel = (formValues) => async dispatch => {
         return; 
     }
 
+    localStorage.setItem("as", "hostel");
+    localStorage.setItem("to", response.data);
+    
     dispatch({ type : "STATUS", payload : { status:"Success", description : `${response.data}` } }); 
     dispatch({type : LOGIN_HOSTEL, payload : response.data});
 }
@@ -60,4 +63,9 @@ export const editHostel = (id, formValues) => async dispatch => {
 
 export const resetHostels = () => async dispatch => {
     dispatch ({ type : RESET_HOSTELS, payload : {} });
+}
+
+export const loginHostelThroughLocalStorage = (hostelName) => async dispatch => {
+    
+    dispatch({ type : LOGIN_HOSTEL, payload : hostelName });
 }

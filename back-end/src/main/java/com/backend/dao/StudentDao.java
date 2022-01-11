@@ -7,6 +7,8 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
+import com.backend.dao.rowmappers.NoticeRowMapper;
+import com.backend.dao.rowmappers.StudentRowMapper;
 import com.backend.pojo.Notice;
 import com.backend.pojo.Student;
 
