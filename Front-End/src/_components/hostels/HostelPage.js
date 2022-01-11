@@ -17,6 +17,7 @@ const HostelPage = (props) => {
     }, []);
 
     const reset = () => {
+        localStorage.clear();
         props.resetStudents();
         props.resetLogin();
     }

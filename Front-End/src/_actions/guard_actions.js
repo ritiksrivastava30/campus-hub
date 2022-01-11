@@ -12,6 +12,9 @@ export const loginGuard = (formValues) => async dispatch => {
         return; 
     }
 
+    localStorage.setItem("as", "guard");
+    localStorage.setItem("to", response.data);
+    
     dispatch({ type : "STATUS", payload : { status:"Success", description : `${response.data}` } });
     dispatch({ type : LOGIN_GUARD, payload : response.data });
 }
@@ -30,4 +33,8 @@ export const checkInCheckOut = (formValues) => async dispatch => {
     dispatch({ type : CHECK_IN_CHECK_OUT, payload : response.data} );
 }
 
+export const loginGuardThroughLocalStorage = (hostelName) => async dispatch => {
+    
+    dispatch({ type : LOGIN_GUARD, payload : hostelName });
+}
 

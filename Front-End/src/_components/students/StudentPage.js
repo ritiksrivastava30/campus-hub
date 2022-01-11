@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { Button } from "../_utility_components/Button";
 import { fetchStudentByRegistrationNumber, resetStudents, fetchNotices, resetNotices } from "../../_actions/student_actions";
 import { resetStatus, resetLogin } from "../../_actions/utility_actions";
-import {FILE_COMPLAINT,EDIT_DETAILS, PROFILE, NOTICES } from "../_constants/student_constants";
+import {FILE_COMPLAINT, PROFILE, NOTICES } from "../_constants/student_constants";
 import { MESS_MENU } from "../_constants/hostel_constants";
 
 const StudentPage = (props) => {
@@ -16,10 +16,10 @@ const StudentPage = (props) => {
         props.resetStatus();
         props.fetchNotices(registrationNumber);
         props.fetchStudentByRegistrationNumber(registrationNumber);
-        
     }, []);
 
     const reset = () => {
+        localStorage.clear();
         props.resetLogin();
         props.resetStudents();
         props.resetNotices();

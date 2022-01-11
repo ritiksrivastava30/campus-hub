@@ -5,7 +5,11 @@ export default(state = {}, action) => {
         case LOGIN_HOSTEL   : return { as : "hostel",  to : action.payload };
         case LOGIN_CANTEEN  : return { as : "canteen", to : action.payload };
         case LOGIN_GUARD    : return { as : "guard", to : action.payload };
-        case LOGIN_STUDENT  : return { as : "student", to : action.payload };
+        case LOGIN_STUDENT  : {
+            localStorage.setItem("as", "student");
+            localStorage.setItem("to", action.payload);
+            return { as : "student", to : action.payload };
+        }
         case RESET_LOGIN    : return action.payload;
         default             : return state;
     }

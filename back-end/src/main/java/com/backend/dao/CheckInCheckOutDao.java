@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import com.backend.dao.rowmappers.CheckInCheckOutRowMapper;
 import com.backend.pojo.CheckInCheckOut;
 
 @Repository

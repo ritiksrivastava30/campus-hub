@@ -15,6 +15,7 @@ const GuardPage = (props) => {
     }, []);
 
     const reset = () => {
+        localStorage.clear();
         props.resetLogin();
     }
 

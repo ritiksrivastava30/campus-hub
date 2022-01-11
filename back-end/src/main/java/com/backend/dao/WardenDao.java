@@ -7,6 +7,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
+import com.backend.dao.rowmappers.WardenRowMapper;
 import com.backend.pojo.Warden;
 
 @Repository

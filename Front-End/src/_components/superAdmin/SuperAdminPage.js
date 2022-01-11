@@ -17,6 +17,7 @@ const SuperAdminPage = (props) => {
     }, []);
 
     const reset = () => {
+        localStorage.clear();
         props.resetLogin();
         props.resetHostels();
         props.resetWardens();
