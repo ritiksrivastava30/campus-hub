@@ -50,7 +50,7 @@ public class StudentController {
 	public Student fetchStudentByRegistrationNumberOfSpecificHostel(@PathVariable String hostelName, @PathVariable int registrationNumber) {
 		System.out.println(hostelName);
 		System.out.println(registrationNumber);
-		return studentService.fetchStudentByRegistrationNumberOfSpecificHostel(registrationNumber);
+		return studentService.fetchStudentByRegistrationNumberOfSpecificHostel(hostelName,registrationNumber);
 	}
 	
 	@GetMapping("/students")
