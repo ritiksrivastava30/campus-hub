@@ -14,6 +14,7 @@ import { loginGuard } from "../../_actions/guard_actions";
 import { loginCanteen } from "../../_actions/canteen_actions";
 import { resetLogin } from "../../_actions/utility_actions";
 import ErrorModal from "../_utility_components/ErrorModal";
+import { isEmail, isNumericValue, isPassword } from "../../_helpers/validation";
 
 const LoginPage = (props) => {
 
@@ -73,9 +74,18 @@ const LoginPage = (props) => {
 
 
 const validate = (formValues) => {
+  const loginAs = window.location.pathname.split("/")[2];
+  console.log(loginAs)
   const errors = {};
-  if(!formValues.userName) errors.userName = "Enter a valid username";
-  if(!formValues.password) errors.password = "Enter a valid password";
+  if(loginAs === "students") {
+    console.log("if")
+    if( !isNumericValue(formValues.userName, 10) ) errors.userName = "Enter a valid username";
+  }
+  else {
+    console.log("else")
+    if( !isEmail(formValues.userName) ) errors.userName = "Enter a valid username";
+  }
+  if( !isPassword(formValues.password) ) errors.password = "Enter a valid password";
   return errors;
 };
 

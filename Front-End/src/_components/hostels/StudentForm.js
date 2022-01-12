@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import { Button } from "../_utility_components/Button";
 import InputField from "../_utility_components/InputField";
-
+import { isNumericValue, isEmail, isPassword } from "../../_helpers/validation";
 
 const StudentForm = (props) => {
 
@@ -76,21 +76,21 @@ const StudentForm = (props) => {
 
 const validate = (formValues) => {
   const errors = {};
-  if (!formValues.registrationNumber) errors.registrationNumber = "Enter a valid registration number";
-  if (!formValues.name) errors.name = "Enter a valid warden name";
-  if (!formValues.email) errors.email = "Enter a valid email id";
-  if (!formValues.password) errors.password = "Enter a valid password";
-  if (!formValues.phoneNumber) errors.phoneNumber = "Enter a valid phoneNumber";
-  if (!formValues.parentPhoneNumber) errors.parentPhoneNumber = "Enter a valid Parent's phoneNumber";
-  if (!formValues.hostelName) errors.hostelName = "Select a valid hostel Id";
-  if (!formValues.branch) errors.branch = "Enter a valid branch name";
-  if (!formValues.semester) errors.semester = "Enter a valid semester";
-  if (!formValues.address) errors.address = "Enter a valid address";
-  if (!formValues.roomNo) errors.roomNo = "Enter a valid Room No";
-  if (!formValues.dob) errors.dob = "Enter a valid Date of Birth";
-  if (!formValues.gender) errors.gender = "Enter a valid gender";
-  if (!formValues.aadharCardNo) errors.aadharCardNo = "Enter a valid Aadhar No.";
-  if (!formValues.blackdots) errors.blackdots = "Enter a valid blackdots";
+  if ( !isNumericValue( formValues.registrationNumber, 10 ) ) errors.registrationNumber = "Enter a valid registration number";
+  if ( !formValues.name ) errors.name = "Enter a valid warden name";
+  if ( !isEmail( formValues.email ) ) errors.email = "Enter a valid email id";
+  if ( !isPassword( formValues.password ) ) errors.password = "Password must constain lowecase, uppercase, digit and a special character and length should atleast be 8.";
+  if ( !isNumericValue( formValues.phoneNumber, 15) ) errors.phoneNumber = "Enter a valid phoneNumber";
+  if ( !isNumericValue( formValues.parentPhoneNumber, 15) ) errors.parentPhoneNumber = "Enter a valid Parent's phoneNumber";
+  if ( !formValues.hostelName ) errors.hostelName = "Select a valid hostel Id";
+  if ( !formValues.branch ) errors.branch = "Select a valid branch name";
+  if ( !isNumericValue(formValues.semester, 1) ) errors.semester = "Enter a valid semester";
+  if ( !formValues.address ) errors.address = "Enter a valid address";
+  if ( !isNumericValue(formValues.roomNo, 3) ) errors.roomNo = "Enter a valid Room No";
+  if ( !formValues.dob ) errors.dob = "Enter a valid Date of Birth (yyyy-mm-dd)";
+  if ( !formValues.gender ) errors.gender = "Select a valid gender";
+  if ( !isNumericValue(formValues.aadharCardNo, 16) ) errors.aadharCardNo = "Enter a valid Aadhar No.";
+  if ( !isNumericValue(formValues.blackdots, 1) ) errors.blackdots = "Enter a valid blackdots";
   return errors;
 };
 

@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 
 import { Button } from "../_utility_components/Button";
 import InputField from "../_utility_components/InputField";
+import { isNumericValue, isEmail, isPassword } from "../../_helpers/validation";
 
 const WardenForm = (props) => {
 
@@ -48,9 +49,9 @@ const WardenForm = (props) => {
 const validate = (formValues) => {
   const errors = {};
   if (!formValues.name) errors.name = "Enter a valid warden name";
-  if (!formValues.email) errors.email = "Enter a valid email id";
-  if (!formValues.password) errors.password = "Enter a valid password";
-  if (!formValues.phoneNumber) errors.phoneNumber = "Enter a valid phoneNumber";
+  if (!isEmail(formValues.email)) errors.email = "Enter a valid email id";
+  if (!isPassword(formValues.password)) errors.password = "Password must constain lowecase, uppercase, digit and a special character and length should atleast be 8.";
+  if (!isNumericValue(formValues.phoneNumber, 15)) errors.phoneNumber = "Enter a valid phoneNumber";
   if (!formValues.hostelName) errors.hostelName = "Select a valid hostel name";
   return errors;
 };
