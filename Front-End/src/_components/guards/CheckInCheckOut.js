@@ -8,6 +8,7 @@ import { Button } from "../_utility_components/Button";
 import { checkIn, checkOut } from "../../_actions/checkin_checkout_actions";
 import ErrorModal from "../_utility_components/ErrorModal";
 import { resetStatus } from "../../_actions/utility_actions";
+import { isNumericValue } from "../../_helpers/validation";
 
 const CheckInCheckOut = (props) => {
 
@@ -44,7 +45,7 @@ const CheckInCheckOut = (props) => {
 
 const validate = ( formValues ) => {
     const errors = {};
-    if(!formValues.registrationNumber) errors.registrationNumber = "Enter a valid registration number";
+    if( !isNumericValue(formValues.registrationNumber, 10) ) errors.registrationNumber = "Enter a valid registration number";
     return errors;
 }
 
