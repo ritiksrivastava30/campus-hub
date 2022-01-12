@@ -38,9 +38,9 @@ public class StarterDao {
 		que = "CREATE TABLE IF NOT EXISTS `notices` (`id` INT NOT NULL AUTO_INCREMENT, `notice` VARCHAR(250) NOT NULL, `hostel_id` INT NOT NULL, PRIMARY KEY (`id`));";
 		jdbcTemplate.execute(que);
 		insertBranches();
-//		insertDummyHostels();  //just for testing
-//		insertDummyWardens();  //just for testing
-//		insertDummyGuards();   //just for testing
+		insertDummyHostels();  //just for testing
+		insertDummyWardens();  //just for testing
+		insertDummyGuards();   //just for testing
 		insertDummyStudents(); //just for testing
 	}
 	
@@ -67,69 +67,61 @@ public class StarterDao {
 	}
 	
 	public void insertDummyStudents() {
-<<<<<<< Updated upstream
-		String encodedPassword = passwordEncoder.encode("20198018");
-		String que = "INSERT IGNORE INTO `students` (`reg_no`, `password`, `name`, `semester`, `address`, `personal_mob`, `parent_mob`, `branch_id`, `room_no`, `hostel_id`, `email`, `gender`, `dob`, `adhaarcard_no`, `blackdots`) VALUES ('20198018', ?, 'Yash', '6', 'Lakhisarai', '7288228287', '8282828827', '2', '203', '2', 'yash@mnnit.ac.in', 'Male', '2000-12-02', '7339939387838', '0');";
-		jdbcTemplate.update(que, encodedPassword);
-		encodedPassword = passwordEncoder.encode("20193045"); 
-		que = "INSERT IGNORE INTO `students` (`reg_no`, `password`, `name`, `semester`, `address`, `personal_mob`, `parent_mob`, `branch_id`, `room_no`, `hostel_id`, `email`, `gender`, `dob`, `adhaarcard_no`, `blackdots`) VALUES ('20193045', ?, 'Stuti', '7', 'MP', '7288228247', '8282828847', '6', '205', '3', 'stuti@gmail.com', 'Female', '1999-11-09', '4439939387838', '0');";
-		jdbcTemplate.update(que, encodedPassword);
-=======
 		String names[]= {"Ritik","Yash","Stuti","Megha" ,"Mekhla", "Virat","Raj","Simran","Aditi","Mayank","Parth","Aditya"};
 		Integer reg=20194001;
 		Integer mob1=1288228288;
 		Integer mob2=1112334569;
-		String encodedPassword = passwordEncoder.encode(reg.toString());
 		for(int i=0;i<600;i++) {
+			String c="_aB";
+			String encodedPassword = passwordEncoder.encode(reg.toString()+c);
 			String que = "INSERT IGNORE INTO `students` (`reg_no`, `password`, `name`, `semester`, `address`, `personal_mob`, `parent_mob`, `branch_id`, `room_no`, `hostel_id`, `email`, `gender`, `dob`, `adhaarcard_no`, `blackdots`) VALUES ('"+ reg+"', '"+ encodedPassword +"' , '"+ names[i%12] +"', '6', 'Lakhisarai', '"+mob1.toString()+"', '"+mob2.toString()+"', '"+ (i%9 +1) +"', '"+ (i+100) +"', '"+(i%6 +1)+"', '"+names[i%12]+"@mnnit.ac.in', 'Male', '2000-12-02', '"+(12342522+i)+"', '0');";
 			reg++;
 			System.out.println(reg);
 			jdbcTemplate.update(que);
 		}
->>>>>>> Stashed changes
 	}
 	
 	public void insertDummyGuards() {
-		String encodedPassword = passwordEncoder.encode("ramesh_123");
+		String encodedPassword = passwordEncoder.encode("Ramesh_123");
 		String que="INSERT IGNORE INTO `guards` (`name`, `email`, `password`, `phone_no`, `hostel_id`) VALUES ('Ramesh', 'ramesh@mnnit.ac.in', ?, '12345667', '2');";
 		jdbcTemplate.update(que, encodedPassword);
-		encodedPassword = passwordEncoder.encode("suresh_123");
+		encodedPassword = passwordEncoder.encode("Suresh_123");
 		que="INSERT IGNORE INTO `guards` (`name`, `email`, `password`, `phone_no`, `hostel_id`) VALUES ('Suresh', 'suresh@mnnit.ac.in', ?, '12345687', '3');";
 		jdbcTemplate.update(que, encodedPassword);
-		encodedPassword = passwordEncoder.encode("raju_123");
+		encodedPassword = passwordEncoder.encode("Raju_123");
 		que="INSERT IGNORE INTO `guards` (`name`, `email`, `password`, `phone_no`, `hostel_id`) VALUES ('Raju', 'raju@mnnit.ac.in', ?, '12345669', '4');";
 		jdbcTemplate.update(que, encodedPassword);
-		encodedPassword = passwordEncoder.encode("kaju_123");
+		encodedPassword = passwordEncoder.encode("Kaju_123");
 		que="INSERT IGNORE INTO `guards` (`name`, `email`, `password`, `phone_no`, `hostel_id`) VALUES ('Kaju', 'kajuh@mnnit.ac.in', ?, '12345777', '5');";
 		jdbcTemplate.update(que, encodedPassword);
-		encodedPassword = passwordEncoder.encode("yoginder_123");
+		encodedPassword = passwordEncoder.encode("Yoginder_123");
 		que="INSERT IGNORE INTO `guards` (`name`, `email`, `password`, `phone_no`, `hostel_id`) VALUES ('Yoginder', 'yoginder@mnnit.ac.in', ?, '15345667', '6');";
 		jdbcTemplate.update(que, encodedPassword);
-		encodedPassword = passwordEncoder.encode("surender_123");
+		encodedPassword = passwordEncoder.encode("Surender_123");
 		que="INSERT IGNORE INTO `guards` (`name`, `email`, `password`, `phone_no`, `hostel_id`) VALUES ('Surender', 'surender@mnnit.ac.in', ?, '17745667', '7');";
 		jdbcTemplate.update(que, encodedPassword);
 	}
 	
 	public void insertDummyWardens() {
-		String encodedPassword = passwordEncoder.encode("admin_123");
+		String encodedPassword = passwordEncoder.encode("Admin_123");
 		String que="INSERT IGNORE INTO `wardens` (`name`, `email`, `password`, `phone_no`, `hostel_id`) VALUES ('SuperAdmin', 'superadmin@mnnit.ac.in', ?, '6200075988', '1');";
 		jdbcTemplate.update(que, encodedPassword);
-		encodedPassword = passwordEncoder.encode("shivdutt_123");
+		encodedPassword = passwordEncoder.encode("Shivdutt_123");
 		que="INSERT IGNORE INTO `wardens` (`name`, `email`, `password`, `phone_no`, `hostel_id`) VALUES ('ShivDutt', 'sd@mnnit.ac.in', ?, '62345667', '2');";
 		jdbcTemplate.update(que, encodedPassword);
-		encodedPassword = passwordEncoder.encode("monika_123");
+		encodedPassword = passwordEncoder.encode("Monika_123");
 		que="INSERT IGNORE INTO `wardens` (`name`, `email`, `password`, `phone_no`, `hostel_id`) VALUES ('Monika Gupta', 'mg@mnnit.ac.in', ?, '72345687', '3');";
 		jdbcTemplate.update(que, encodedPassword);
-		encodedPassword = passwordEncoder.encode("sonika_123");
+		encodedPassword = passwordEncoder.encode("Sonika_123");
 		que="INSERT IGNORE INTO `wardens` (`name`, `email`, `password`, `phone_no`, `hostel_id`) VALUES ('Sonika Gupta', 'sg@mnnit.ac.in', ?, '82345687', '4');";
 		jdbcTemplate.update(que, encodedPassword);
-		encodedPassword = passwordEncoder.encode("ronika_123");
+		encodedPassword = passwordEncoder.encode("Ronika_123");
 		que="INSERT IGNORE INTO `wardens` (`name`, `email`, `password`, `phone_no`, `hostel_id`) VALUES ('Ronika Gupta', 'rg@mnnit.ac.in', ?, '92345687', '5');";
 		jdbcTemplate.update(que, encodedPassword);
-		encodedPassword = passwordEncoder.encode("jonika_123");
+		encodedPassword = passwordEncoder.encode("Jonika_123");
 		que="INSERT IGNORE INTO `wardens` (`name`, `email`, `password`, `phone_no`, `hostel_id`) VALUES ('Jonika Gupta', 'jg@mnnit.ac.in', ?, '12345887', '6');";
 		jdbcTemplate.update(que, encodedPassword);
-		encodedPassword = passwordEncoder.encode("yonika_123");
+		encodedPassword = passwordEncoder.encode("Yonika_123");
 		que="INSERT IGNORE INTO `wardens` (`name`, `email`, `password`, `phone_no`, `hostel_id`) VALUES ('Yonika Gupta', 'yg@mnnit.ac.in', ?, '12345117', '7');";
 		jdbcTemplate.update(que, encodedPassword);
 	}
