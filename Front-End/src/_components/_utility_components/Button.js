@@ -1,5 +1,5 @@
 export const Button = (props) => {
     return (
-        <button onClick = {props.onClick} >{props.text}</button>
+        <button className="btn btn-warning btn-group" onClick = {props.onClick} >{props.text}</button>
     );
 }

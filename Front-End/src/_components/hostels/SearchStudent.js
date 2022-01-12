@@ -26,10 +26,15 @@ const SearchStudent = (props) => {
     } 
 
     return (
-        <div>
-            <form onSubmit = { props.handleSubmit(onSubmit) }>
+        <div className="container">
+            <div className="card">            
+            <form className="row" onSubmit = { props.handleSubmit(onSubmit) }>
+                <div className="col-md-8">
                 <Field name = "registrationNumber" component = { InputField } label = "Registration Number" />
+                </div>
+                <div className="col-md-4">
                 <Button text = "Search" />
+                </div>
             </form>
             { props.status.status === "Error" ? <ErrorModal /> : null }
             { _.isEmpty(props.student) ? null : 
@@ -40,6 +45,7 @@ const SearchStudent = (props) => {
                     </Link>
                 </div>
             }
+        </div>
         </div>
     )
 

@@ -26,7 +26,8 @@ const StudentPage = (props) => {
     }
 
     return (
-        <div>
+        <div className="bgimg">
+            <div className="navbar">
             {props.student == undefined ? <h1></h1> : <h1> {props.student.name} </h1>}
             <Link to = { `/students/${registrationNumber}/fileComplaint`} >
                 <Button text = {FILE_COMPLAINT} />
@@ -43,6 +44,7 @@ const StudentPage = (props) => {
             <Link to = "/">
                 <Button onClick = { reset } text = "LOG OUT" />
             </Link>
+            </div>
             <Outlet />
         </div>
     );

@@ -7,19 +7,25 @@ import { Button } from "../_utility_components/Button";
 const HostelForm = (props) => {
   return (
     <div>
-      <form onSubmit={props.handleSubmit(props.onSubmit)}>
+      <form className="row" onSubmit={props.handleSubmit(props.onSubmit)}>
+        <div className="col-md-4">
         <Field
           name="name"
           component={InputField}
           label="NAME OF HOSTEL"
         />
+        </div>
+        <div className="col-md-3">
         <Field name="capacity" component={InputField} label="NUMBER OF ROOMS" />
-        <div>
+        </div>
+        <div className="col-md-3">
             <label>Is Active?</label>
             <label> <Field name = "status" component = "input" type="radio" value= "1" checked="checked" /> Yes </label>
             <label> <Field name = "status" component = "input" type = "radio" value = "0" /> No </label>
         </div>
+        <div className="col-md-2">
         <Button text="ADD" />
+        </div>
       </form>
     </div>
   );

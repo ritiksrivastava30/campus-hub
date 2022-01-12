@@ -25,12 +25,18 @@ const CheckInCheckOut = (props) => {
     }
 
     return (
-        <div>
-            <form onSubmit = { props.handleSubmit(onSubmit) }>
+        <div className="container">
+            <div className="card">
+            <form className="row" onSubmit = { props.handleSubmit(onSubmit) }>
+                <div className="col-md-11">
                 <Field name = "registrationNumber" component = {InputField} label = "Registration Number" />
+                </div>
+                <div className="col-md-1">
                 <Button text = "ENTER" />
+                </div>
                 { props.status.status === "Error" ? <ErrorModal /> : null }
             </form>
+        </div>
         </div>
     );
 }

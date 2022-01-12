@@ -16,7 +16,8 @@ const AddWarden = (props) => {
     }
 
     return (
-        <div>
+        <div className="container">
+            <div className="card">
             {
                 props.status.status === "Success" ? 
                 <ShowWarden title = "Warden Added Successfully" warden = {warden} /> : 
@@ -27,6 +28,7 @@ const AddWarden = (props) => {
                 </div>
             }
             </div>
+        </div>
     );
 
 };

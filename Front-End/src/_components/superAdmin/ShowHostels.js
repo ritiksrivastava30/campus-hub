@@ -6,9 +6,11 @@ const ShowHostels = (props) => {
     const hostels = Object.values(props.hostels);
 
     return (
-        <div>
+        <div className="container">
+            <div className="card">
         <h2>List Of Hostels</h2>
         <HostelTable data = {hostels} rowsPerPage={8}/>
+        </div>
         </div>
     );
 }

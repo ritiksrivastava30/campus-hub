@@ -18,7 +18,8 @@ const AddHostel = (props) => {
     }
 
     return (
-        <div>
+        <div className="container">
+            <div className="card">
             { 
             props.status.status === "Success" ? 
                 <ShowHostel title = "ADDED SUCCESSFULLY" hostel = {hostel} /> :
@@ -28,6 +29,7 @@ const AddHostel = (props) => {
                     { props.status.status === "Error" ? <ErrorModal /> : null }
                 </div>
             }
+        </div>
         </div>
     );
     

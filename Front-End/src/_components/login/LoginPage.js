@@ -48,14 +48,24 @@ const LoginPage = (props) => {
 
   
   return (
-    <div>
+    <div className="bgimg">
+    <div className="container">
+      <div className="card">
       <Title text={titleText} />
-      <form onSubmit={props.handleSubmit(onSubmit)} >
+      <form className="row" onSubmit={props.handleSubmit(onSubmit)} >
+      <div className="col-md-5 ">
         <Field name="userName" component={InputField} label="Username" />
+        </div>
+        <div className="col-md-5 ">
         <Field name="password" type = "password" component={InputField} label="Password" />
-        <Button text="Submit" />      
+        </div>
+        <div className="col-md-2 ">
+        <Button text="Submit" />   
+        </div>   
       </form>
       {props.status.status === "Error" ? <ErrorModal /> : null }
+      </div>
+    </div>
     </div>
   );
 

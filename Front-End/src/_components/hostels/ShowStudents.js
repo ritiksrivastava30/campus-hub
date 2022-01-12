@@ -19,9 +19,11 @@ const ShowStudents = (props) => {
     const students = Object.values(props.students);
 
     return (
-        <div>
+        <div className="container">
+            <div className="card">
             <h2>List Of Students</h2>
             <StudentTable data = { students } rowsPerPage={8} />
+        </div>
         </div>
     );
 }

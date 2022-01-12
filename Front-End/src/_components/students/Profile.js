@@ -14,7 +14,8 @@ const Profile = (props) => {
     }, []);
 
     return (
-        <div>
+        <div className="container">
+            <div className="card">
             {_.isEmpty(props.student) ? null :
                 <div>
                     <h2> Registration Number : { props.student.registrationNumber } </h2>
@@ -33,6 +34,7 @@ const Profile = (props) => {
                     <h2> Room Number : { props.student.roomNo } </h2>
                 </div>
             }   
+        </div>
         </div>
     );
 }

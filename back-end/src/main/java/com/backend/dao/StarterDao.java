@@ -70,7 +70,7 @@ public class StarterDao {
 		String encodedPassword = passwordEncoder.encode("20198018");
 		String que = "INSERT IGNORE INTO `students` (`reg_no`, `password`, `name`, `semester`, `address`, `personal_mob`, `parent_mob`, `branch_id`, `room_no`, `hostel_id`, `email`, `gender`, `dob`, `adhaarcard_no`, `blackdots`) VALUES ('20198018', ?, 'Yash', '6', 'Lakhisarai', '7288228287', '8282828827', '2', '203', '2', 'yash@mnnit.ac.in', 'Male', '2000-12-02', '7339939387838', '0');";
 		jdbcTemplate.update(que, encodedPassword);
-		encodedPassword = passwordEncoder.encode("20194034"); 
+		encodedPassword = passwordEncoder.encode("20193045"); 
 		que = "INSERT IGNORE INTO `students` (`reg_no`, `password`, `name`, `semester`, `address`, `personal_mob`, `parent_mob`, `branch_id`, `room_no`, `hostel_id`, `email`, `gender`, `dob`, `adhaarcard_no`, `blackdots`) VALUES ('20193045', ?, 'Stuti', '7', 'MP', '7288228247', '8282828847', '6', '205', '3', 'stuti@gmail.com', 'Female', '1999-11-09', '4439939387838', '0');";
 		jdbcTemplate.update(que, encodedPassword);
 	}
