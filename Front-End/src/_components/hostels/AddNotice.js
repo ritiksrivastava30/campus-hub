@@ -15,9 +15,11 @@ const AddNotice = (props) => {
     }
 
     return (
-        <div>
+        <div className="container">
+            <div className="card">
             <h1>ADD NOTICE</h1>
             <NoticeForm onSubmit={onSubmit} />
+        </div>
         </div>
     );
 

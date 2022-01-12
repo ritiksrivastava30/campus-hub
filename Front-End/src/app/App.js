@@ -37,6 +37,8 @@ import { loginStudentThroughLocalStorage } from "../_actions/student_actions";
 import { loginGuardThroughLocalStorage } from "../_actions/guard_actions";
 import { loginHostelThroughLocalStorage } from "../_actions/hostel_actions";
 
+import "../_components/css/style.css";
+
 const App = (props) => {
 
   const as = localStorage.getItem("as");
@@ -83,6 +85,7 @@ const App = (props) => {
           <Route path = "/students/:regNo/messMenu" element = { <StudentPrivateRoute> <MessMenu /> </StudentPrivateRoute>} />
       </React.Fragment>
     )
+    
   }
 
   const guardRoutes = () => {

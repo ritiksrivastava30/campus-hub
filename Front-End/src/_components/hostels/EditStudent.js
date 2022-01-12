@@ -36,7 +36,8 @@ const EditStudent = (props) => {
 
 
     return (
-        <div>
+        <div className="container">
+            <div className="card">
             { 
             props.status.status === "Success" ? 
                 <ShowStudent title = "EDITED SUCCESSFULLY" student = { updatedStudent } /> : 
@@ -49,6 +50,7 @@ const EditStudent = (props) => {
                     { props.status.status === "Error" ? <ErrorModal /> : null }
                 </div>
             }
+        </div>
         </div>
     );
 

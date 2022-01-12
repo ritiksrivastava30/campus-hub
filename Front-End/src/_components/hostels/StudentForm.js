@@ -19,31 +19,54 @@ const StudentForm = (props) => {
   return (
 
     <div>
-      <form onSubmit = { props.handleSubmit(props.onSubmit ) }>
+      <form className="row" onSubmit = { props.handleSubmit(props.onSubmit ) }>
+      <div className="col-md-6 ">
         <Field name="registrationNumber" component={InputField} label="REGISTRATION NO" />
+        </div>
+        <div className="col-md-6 ">
         <Field name="password" component={InputField}  type = "password" label="PASSWORD" />
+        </div>
+        <div className="col-md-6 ">
         <Field name="name" component={InputField} label="NAME" />
+        </div>
+        <div className="col-md-6 ">
         <Field name="semester" component={InputField} label="SEMESTER" />
+        </div>
+        <div className="col-md-12 ">
         <Field name="address" component={InputField} label="ADDRESS" />
+        </div>
+        <div className="col-md-6 ">
         <Field name="phoneNumber" component={InputField} label="PHONE NUMBER" />
+        </div>
+        <div className="col-md-6 ">
         <Field name="parentPhoneNumber" component={InputField} label="PARENT'S PHONE NUMBER" />
-        <div>
+        </div>
+        <div className="col-md-6 ">
           <label>BRANCH</label>
             <Field name="branch" component="select">
               {renderBranchOptions()}
             </Field>
         </div>
+        <div className="col-md-6 ">
         <Field name="roomNo" component={InputField} label="ROOM NUMBER" />
+        </div>
+        <div className="col-md-6 ">
         <Field name="email" component={InputField} label="EMAIL ID" />
-        <div>
+        </div>
+        <div className="col-md-6 ">
             <label>GENDER</label>
             <label> <Field name = "gender" component = "input" type="radio" value= "Male" checked="checked" /> MALE </label>
             <label> <Field name = "gender" component = "input" type = "radio" value = "Female" /> FEMALE </label>
         </div>
+        <div className="col-md-6 ">
         <Field name = "dob" component = {InputField} label = "DOB" placeholder = "yyyy-mm-dd" />
+        </div>
+        <div className="col-md-6 ">
         <Field name="aadharCardNo" component={InputField} label="AADHAR CARD NO" />
+        </div>
+        <div className="col-md-6 ">
         <Field name="blackdots" component={InputField} label="BLACK DOTS" />
-
+        </div>
         <Button text="ADD" />
       </form>
     </div>

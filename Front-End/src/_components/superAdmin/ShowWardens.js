@@ -6,9 +6,11 @@ const ShowWardens = (props) => {
     const wardens = Object.values(props.wardens);
 
     return (
-        <div>
+        <div className="container">
+            <div className="card">
         <h2>List Of Wardens</h2>
         <WardenTable data = {wardens} rowsPerPage={8}/>
+        </div>
         </div>
     );
 }

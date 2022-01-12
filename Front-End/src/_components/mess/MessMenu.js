@@ -26,10 +26,12 @@ const MessMenu = ( props ) => {
     const menu = Object.values(props.menu);
 
     return (
-        <div>
+        <div className="container">
+            <div className="card">
             <h2>Mess Menu</h2>
             <MenuTable data = { menu } rowsPerPage = {8} />
             { props.login.as === "hostel" ? <ChangeMessMenu hostelName = {props.login.to} /> : null }
+        </div>
         </div>
     )
 
