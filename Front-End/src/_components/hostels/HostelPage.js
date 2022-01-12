@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { Button } from "../_utility_components/Button";
 import {resetStatus, resetLogin } from "../../_actions/utility_actions";
 import { fetchStudentsOfHostel, resetStudents } from "../../_actions/student_actions";
-import {ADD_STUDENT,SHOW_STUDENTS,COMPLAINTS,ADD_NOTICE, SEARCH_STUDENT} from "../_constants/hostel_constants";
+import {ADD_STUDENT,SHOW_STUDENTS,SHOW_COMPLAINTS,ADD_NOTICE, SEARCH_STUDENT} from "../_constants/hostel_constants";
 
 const HostelPage = (props) => {
     
@@ -30,8 +30,8 @@ const HostelPage = (props) => {
             <Link to = {`/hostels/${hostelName}/showStudents`}>
                 <Button text = {SHOW_STUDENTS} />
             </Link>
-            <Link to = {`/hostels/${hostelName}/complaints`}>
-                <Button text = {COMPLAINTS} />
+            <Link to = {`/hostels/${hostelName}/showComplaints`}>
+                <Button text = {SHOW_COMPLAINTS} />
             </Link>
             <Link to = {`/hostels/${hostelName}/searchStudent`}>
                 <Button text = {SEARCH_STUDENT} />

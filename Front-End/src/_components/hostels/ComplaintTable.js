@@ -5,7 +5,7 @@ import useTable from "../_utility_components/useTable";
 import TableFooter from "../_utility_components/TableFooter";
 //import { Button } from "../_utility_components/Button";
 
-const NoticeTable = ({ data, rowsPerPage }) => {
+const ComplaintTable = ({ data, rowsPerPage }) => {
   const [page, setPage] = useState(1);
   const { slice, range } = useTable(data, page, rowsPerPage);
 
@@ -14,14 +14,17 @@ const NoticeTable = ({ data, rowsPerPage }) => {
       <table className= "table table-striped table-bordered table-responsive table-info">
         <thead>
           <tr>
-            <th className="col">Notice</th>
-            
+            <th className="col">Complaint</th>
+            <th className="col">Student Id</th>
+            <th className="col">Student name</th>
           </tr>
         </thead>
         <tbody>
           {slice.map((el) => (
-            <tr key={el.id}>
-              <td> {el.notice} </td>
+            <tr key={el.regNo}>
+              <td> {el.complaint} </td>
+              <td> {el.regNo} </td>
+              <td> {el.name} </td>
             </tr>
           ))}
         </tbody>
@@ -31,4 +34,4 @@ const NoticeTable = ({ data, rowsPerPage }) => {
   );
 };
 
-export default NoticeTable;
+export default ComplaintTable;

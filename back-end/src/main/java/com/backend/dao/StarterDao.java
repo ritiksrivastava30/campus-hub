@@ -28,7 +28,9 @@ public class StarterDao {
 		que= "CREATE TABLE IF NOT EXISTS `guards` (`id` INT NOT NULL AUTO_INCREMENT, `name` VARCHAR(100) NOT NULL, `email` VARCHAR(100) NOT NULL UNIQUE, `password` VARCHAR(45) NOT NULL, `phone_no` VARCHAR(15) NULL, `hostel_id` INT NULL, PRIMARY KEY (`id`), FOREIGN KEY(`hostel_id`) REFERENCES `hostels`(`id`));";
 		jdbcTemplate.execute(que);
 		que="CREATE TABLE IF NOT EXISTS `check_out` (`reg_no` INT NOT NULL, `check_out_time` TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, PRIMARY KEY (`reg_no`), FOREIGN KEY(`reg_no`) REFERENCES students(`reg_no`));";
-		jdbcTemplate.execute(que);	
+		jdbcTemplate.execute(que);
+		que= "CREATE TABLE IF NOT EXISTS `complaints` (`regNo` INT NOT NULL, `name` VARCHAR(100) NOT NULL,`complaint` VARCHAR(200) NOT NULL,`reply` VARCHAR(200) DEFAULT NULL,`hostel_id` INT NULL, PRIMARY KEY (`regNo`), FOREIGN KEY(`hostel_id`) REFERENCES `hostels`(`id`));";
+		jdbcTemplate.execute(que);
 		que="INSERT IGNORE INTO `guards` (`name`, `email`, `password`, `phone_no`, `hostel_id`) VALUES ('Ramesh', 'ramesh@mnnit.ac.in', 'ramesh_123', '12345667', '2');";
 		jdbcTemplate.execute(que);
 		que="INSERT IGNORE INTO `guards` (`name`, `email`, `password`, `phone_no`, `hostel_id`) VALUES ('Suresh', 'suresh@mnnit.ac.in', 'suresh_123', '12345667', '3');";

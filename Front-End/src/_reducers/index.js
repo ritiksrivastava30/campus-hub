@@ -9,7 +9,7 @@ import statusReducer from "./statusReducer";
 import wardenReducer from "./wardenReducer";
 import branchReducer from "./branchReducer";
 import noticeReducer from "./noticeReducer";
-//import Notices from "../_components/students/Notices";
+import complaintReducer from "./complaintReducer";
 
 export default combineReducers({
     form : reducer,
@@ -21,5 +21,6 @@ export default combineReducers({
     status : statusReducer,
     wardens : wardenReducer,
     branch : branchReducer,
-    notices : noticeReducer
+    notices : noticeReducer,
+    complaints : complaintReducer
 });

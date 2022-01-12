@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.backend.pojo.Complaint;
 import com.backend.pojo.Hostel;
 import com.backend.pojo.Notice;
 import com.backend.service.HostelService;
@@ -28,7 +29,6 @@ public class HostelController {
 	
 	@PostMapping("/hostels/addNotice/{hostelName}/{notice}")
 	public Notice addNotice(@PathVariable String hostelName, @PathVariable String notice) {
-		System.out.println("in add notice");
 		return hostelService.addNotice(hostelName, notice);
 	}
 	
@@ -40,5 +40,15 @@ public class HostelController {
 	@GetMapping("/hostels")
 	public List<Hostel> fetchHostels(){
 		return hostelService.fetchHostels();
+	}
+	
+	@GetMapping("/hostels/complaints/{hostelName}")
+	public List<Complaint> fetchComplaints(@PathVariable String hostelName){
+		return hostelService.fetchComplaints(hostelName);
+	}
+	
+	@PatchMapping("/hostels/replyComplaint/{regNo}/{reply}")
+	public Complaint replyComplaint(@PathVariable int regNo, @PathVariable String reply) {
+		return hostelService.replyComplaint(regNo, reply);
 	}
 }
