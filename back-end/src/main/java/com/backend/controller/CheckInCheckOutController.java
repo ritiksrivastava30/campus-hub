@@ -17,12 +17,12 @@ public class CheckInCheckOutController {
 	
 	@PostMapping("/checkOut/{hostelName}/{registrationNumber}")
 	public String checkOut(@PathVariable String hostelName, @PathVariable int registrationNumber) {
-		return checkInCheckOutService.checkOut(registrationNumber);
+		return checkInCheckOutService.checkOut(hostelName,registrationNumber);
 	}
 	
 	@PostMapping("/checkIn/{hostelName}/{registrationNumber}")
 	public String chechIn(@PathVariable String hostelName, @PathVariable int registrationNumber) {
-		return checkInCheckOutService.checkIn(registrationNumber);
+		return checkInCheckOutService.checkIn(hostelName,registrationNumber);
 	}
 	
 }

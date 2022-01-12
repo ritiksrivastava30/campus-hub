@@ -13,12 +13,12 @@ public class CheckInCheckOutService {
 	@Autowired
 	CheckInCheckOutDao checkInCheckOutDao;
 	
-	public String checkIn(int registrationNumber) {
-		return checkInCheckOutDao.checkIn(registrationNumber);
+	public String checkIn(String hostelName,int registrationNumber) {
+		return checkInCheckOutDao.checkIn(hostelName,registrationNumber);
 	}
 	
-	public String checkOut(int registrationNumber) {
-		return checkInCheckOutDao.checkOut(registrationNumber);
+	public String checkOut(String hostelName,int registrationNumber) {
+		return checkInCheckOutDao.checkOut(hostelName,registrationNumber);
 	}
 	
 	public void sendingEmailToOutsiders() {
