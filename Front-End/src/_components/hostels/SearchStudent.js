@@ -11,6 +11,8 @@ import { resetStatus } from "../../_actions/utility_actions";
 import ShowStudent from "./ShowStudent";
 import ErrorModal from "../_utility_components/ErrorModal";
 
+import { isNumericValue } from "../../_helpers/validation";
+
 const SearchStudent = (props) => {
 
     const params = useParams();
@@ -53,7 +55,7 @@ const SearchStudent = (props) => {
 
 const validate = (formValues) => {
     const errors = {};
-    if(!formValues.registrationNumber) errors.registrationNumber = "Enter a valid registration number";
+    if(!isNumericValue(formValues.registrationNumber, 10)) errors.registrationNumber = "Enter a valid registration number";
     return errors; 
 }
 

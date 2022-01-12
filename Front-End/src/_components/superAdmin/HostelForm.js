@@ -3,6 +3,7 @@ import { reduxForm } from "redux-form";
 import { Field } from "redux-form";
 import InputField from "../_utility_components/InputField";
 import { Button } from "../_utility_components/Button";
+import { isNumericValue } from "../../_helpers/validation";
 
 const HostelForm = (props) => {
   return (
@@ -34,7 +35,7 @@ const HostelForm = (props) => {
 const validate = (formValues) => {
     const errors = {};
     if(!formValues.name) errors.name = "Enter a valid hostel name";
-    if(!formValues.capacity) errors.capacity = "Enter a valid capacity";
+    if(!isNumericValue(formValues.capacity, 3)) errors.capacity = "Enter a valid capacity";
     if(!formValues.status) errors.status = "Select a valid status";
     return errors;
   };

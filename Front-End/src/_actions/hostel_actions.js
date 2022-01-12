@@ -5,18 +5,22 @@ import { LOGIN_HOSTEL } from "./_types/login_types";
 import api from "../apis/main";
 
 export const loginHostel = (formValues) => async dispatch => {
-    const response = await api.get(`/hostels/${formValues.userName}/${formValues.password}`);
+    try{
+        const response = await api.get(`/hostels/${formValues.userName}/${formValues.password}`);
 
-    if(response.data === "error"){
-        dispatch({ type : "STATUS", payload : { status:"Error", description : "Check your credentials" } }); 
-        return; 
+        if(response.data === "error"){
+            dispatch({ type : "STATUS", payload : { status:"Error", description : "Check your credentials" } }); 
+            return; 
+        }
+
+        localStorage.setItem("as", "hostel");
+        localStorage.setItem("to", response.data);
+        
+        dispatch({ type : "STATUS", payload : { status:"Success", description : `${response.data}` } }); 
+        dispatch({type : LOGIN_HOSTEL, payload : response.data});
+    } catch(error){
+        dispatch({ type : "STATUS", payload : { status:"Error", description : "Server Error" } }); 
     }
-
-    localStorage.setItem("as", "hostel");
-    localStorage.setItem("to", response.data);
-    
-    dispatch({ type : "STATUS", payload : { status:"Success", description : `${response.data}` } }); 
-    dispatch({type : LOGIN_HOSTEL, payload : response.data});
 }
 
 export const fetchHostels = () => async dispatch => {
@@ -25,13 +29,17 @@ export const fetchHostels = () => async dispatch => {
 }
 
 export const addHostel = (formValues) => async dispatch => {
-    const response = await api.post("/hostels", formValues);
-    if(_.isEmpty(response.data)) {
-         dispatch({ type : "STATUS", payload : { status:"Error", description : "A hostel with same name already exists." } }); 
-         return; 
+    try {
+        const response = await api.post("/hostels", formValues);
+        if(_.isEmpty(response.data)) {
+            dispatch({ type : "STATUS", payload : { status:"Error", description : "A hostel with same name already exists." } }); 
+            return; 
+        }
+        dispatch({ type : "STATUS", payload : { status:"Success", description : `${response.data.name}` } }); 
+        dispatch({ type : ADD_HOSTEL, payload : response.data });
+    } catch(error) {
+        dispatch({ type : "STATUS", payload : { status:"Error", description : "Server Error" } }); 
     }
-    dispatch({ type : "STATUS", payload : { status:"Success", description : `${response.data.name}` } }); 
-    dispatch({ type : ADD_HOSTEL, payload : response.data });
 }
 export const addNotice = (hostelName, formValues) => async dispatch => {
     console.log(ADD_NOTICE);
@@ -49,15 +57,19 @@ export const addNotice = (hostelName, formValues) => async dispatch => {
 }
 
 export const editHostel = (id, formValues) => async dispatch => {
-    const response = await api.patch(`/hostels/${id}`, formValues);
+    try {
+        const response = await api.patch(`/hostels/${id}`, formValues);
+    
+        if(_.isEmpty(response.data)) {
+            dispatch({ type : "STATUS", payload : { status:"Error", description : "A hostel with same name already exists." } }); 
+            return; 
+        }
 
-    if(_.isEmpty(response.data)) {
-        dispatch({ type : "STATUS", payload : { status:"Error", description : "A hostel with same name already exists." } }); 
-        return; 
+        dispatch({ type : "STATUS", payload : { status:"Success", description : `${response.data.name}` } }); 
+        dispatch({ type : EDIT_HOSTEL, payload : response.data });
+    } catch(error){
+        dispatch({ type : "STATUS", payload : { status:"Error", description : "Server Error" } }); 
     }
-
-    dispatch({ type : "STATUS", payload : { status:"Success", description : `${response.data.name}` } }); 
-    dispatch({ type : EDIT_HOSTEL, payload : response.data });
 }
 
 

@@ -5,17 +5,21 @@ import { LOGIN_STUDENT } from "./_types/login_types";
 import api from "../apis/main";
 
 export const loginStudent = (formValues) => async dispatch => {
-    const response = await api.get(`/students/${formValues.userName}/${formValues.password}`);
+    try {
+        const response = await api.get(`/students/${formValues.userName}/${formValues.password}`);
     
-    if(response.data === "error") {
-        dispatch({ type : "STATUS", payload : { status:"Error", description : "Check your credentials." } }); 
-        return; 
+        if(response.data === "error") {
+            dispatch({ type : "STATUS", payload : { status:"Error", description : "Check your credentials." } }); 
+            return; 
+        }
+        localStorage.setItem("as", "student");
+        localStorage.setItem("to", response.data);
+    
+        dispatch({ type : "STATUS", payload : { status:"Success", description : `${response.data}` } }); 
+        dispatch({ type : LOGIN_STUDENT, payload : response.data });
+    } catch(error) {
+        dispatch({ type : "STATUS", payload : { status:"Error", description : "Server Error" } }); 
     }
-    localStorage.setItem("as", "student");
-    localStorage.setItem("to", response.data);
-    
-    dispatch({ type : "STATUS", payload : { status:"Success", description : `${response.data}` } }); 
-    dispatch({ type : LOGIN_STUDENT, payload : response.data });
 }
 
 export const fetchStudents = () => async dispatch => {
@@ -37,6 +41,7 @@ export const fetchNotices = (regNo) => async dispatch => {
 }
 
 export const addStudent = (formValues) => async dispatch => {
+    try {
     const response = await api.post("/students", formValues);
 
     if(_.isEmpty(response.data)) {
@@ -46,18 +51,25 @@ export const addStudent = (formValues) => async dispatch => {
 
     dispatch({ type : "STATUS", payload : { status:"Success", description : `${response.data.name}` } }); 
     dispatch({ type : ADD_STUDENT, payload : response.data });
+    }catch(error){
+        dispatch({ type : "STATUS", payload : { status:"Error", description : "Server Error" } }); 
+    }
 }
 
 export const editStudent = (id, formValues) => async dispatch => {
-    const response = await api.patch(`/students/${id}`, formValues);
+    try {
+        const response = await api.patch(`/students/${id}`, formValues);
 
-    if(_.isEmpty(response.data)) {
-        dispatch({ type : "STATUS", payload : { status:"Error", description : "A student with same registration number already exists." } }); 
-        return; 
+        if(_.isEmpty(response.data)) {
+            dispatch({ type : "STATUS", payload : { status:"Error", description : "A student with same registration number already exists." } }); 
+            return; 
+        }
+
+        dispatch({ type : "STATUS", payload : { status:"Success", description : `${response.data.name}` } }); 
+        dispatch({ type : EDIT_STUDENT, payload : response.data });
+    } catch(error){
+        dispatch({ type : "STATUS", payload : { status:"Error", description : "Server Error" } }); 
     }
-
-    dispatch({ type : "STATUS", payload : { status:"Success", description : `${response.data.name}` } }); 
-    dispatch({ type : EDIT_STUDENT, payload : response.data });
 }
 
 export const fetchStudentByRegistrationNumberOfSpecificHostel = (registrationNumber, hostelName) => async dispatch => {
