@@ -6,6 +6,13 @@ import { fetchStudentByRegistrationNumber } from "../../_actions/student_actions
 
 const Profile = (props) => {
 
+    const params = useParams();
+    const registrationNumber = params.regNo;
+
+    useEffect(() => {
+        // props.fetchStudentByRegistrationNumber(registrationNumber)
+    }, []);
+
     return (
         <div className="container">
             <div className="card">

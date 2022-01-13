@@ -1,4 +1,4 @@
-package com.backend.dao;
+package com.backend.dao.rowmappers;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

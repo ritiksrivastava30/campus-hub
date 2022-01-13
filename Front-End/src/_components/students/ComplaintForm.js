@@ -9,9 +9,13 @@ const ComplaintForm = (props) => {
 
   return (
     <div>
-      <form onSubmit={props.handleSubmit(props.onSubmit)}>
-        <Field name="complaint" component={InputField} label="COMPLAINT TO BE FILED:" />
-        <Button text="SUBMIT" />
+      <form className="row" onSubmit={props.handleSubmit(props.onSubmit)}>
+        <div className="col-md-8">
+          <Field name="complaint" component={InputField} label="COMPLAINT TO BE FILED:" />
+        </div>
+        <div className="col-md-4">
+          <Button text="SUBMIT" />
+        </div>
       </form>
     </div>
   );
@@ -20,13 +24,9 @@ const ComplaintForm = (props) => {
 
 const validate = (formValues) => {
   const errors = {};
-  if (!formValues.notice) errors.notice = "Enter a valid complaint";
+  if (!formValues.complaint) errors.complaint = "Enter a valid complaint";
   return errors;
 };
-
-/*const mapStateToProps = (state) => {
-    return { hostels : state.hostel}
-}*/
 
 const formWrapped = reduxForm({
   form: "COMPLAINT_FORM",

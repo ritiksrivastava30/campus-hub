@@ -19,12 +19,14 @@ const FileComplaint = (props) => {
     }
 
     return (
-        <div>
+        <div className="container">
+            <div className="card">
             <h1>FILE COMPLAINT</h1>
             <ComplaintForm onSubmit={onSubmit} />
             <Link to = { `/students/${registrationNumber}/showReply`} >
                 <Button text = {SHOW_REPLY} />
             </Link>
+        </div>
         </div>
     );
 

@@ -26,13 +26,16 @@ const ReplyComplaint = (props) => {
     } 
 
     return (
-        <div>
+        <div className="container">
+            <div className="card">            
             <form onSubmit = { props.handleSubmit(onSubmit) }>
                 <Field name = "regNo" component = { InputField } label = "Registration Number" />
                 <Field name = "reply" component = { InputField } label = "Reply:" />
                 <Button text = "Send" />
             </form>
         </div>
+        </div>
+
     )
 
 }

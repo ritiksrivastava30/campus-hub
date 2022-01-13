@@ -21,12 +21,14 @@ const Complaints = (props) => {
     const complaints = Object.values(props.complaints);
 
     return (
-        <div>
+        <div className="container">
+            <div className="card">
             <h2>Complaints</h2>
             <ComplaintTable data = { complaints } rowsPerPage={8} />
             <Link to = {`/hostels/${hostelName}/replyComplaint`} >
                  <Button text = "REPLY TO COMPLAINT" />
             </Link>
+            </div>
         </div>
     );
 }
