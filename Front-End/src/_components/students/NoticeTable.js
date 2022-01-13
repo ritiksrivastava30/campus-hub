@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-//import { Link } from "react-router-dom";
 import useTable from "../_utility_components/useTable";
 //import styles from "../_utility_components/Table.module.css";
 import TableFooter from "../_utility_components/TableFooter";
-//import { Button } from "../_utility_components/Button";
 
 const NoticeTable = ({ data, rowsPerPage }) => {
   const [page, setPage] = useState(1);

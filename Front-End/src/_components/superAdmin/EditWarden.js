@@ -14,7 +14,8 @@ const EditWarden = (props) => {
     }
 
     return (
-        <div>
+        <div className="container">
+            <div className="card">
             {
             props.status.status === "Success" ? 
                 <ShowWarden title = "Warden Edited Successfully" warden = {props.warden} /> :
@@ -24,6 +25,7 @@ const EditWarden = (props) => {
                     {props.status.status === "Error" ? <ErrorModal /> : null }
                 </div>
             }
+        </div>
         </div>
     );
 

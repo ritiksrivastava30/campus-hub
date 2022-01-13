@@ -28,7 +28,7 @@ export const editWarden = (id, formValues) => async dispatch => {
         return; 
     }
     dispatch({ type : "STATUS", payload : { status:"Success", description : `${response.data.email}` } });
-    
+
     dispatch({ type : UPDATE_WARDEN, payload : response.data});
 }
 

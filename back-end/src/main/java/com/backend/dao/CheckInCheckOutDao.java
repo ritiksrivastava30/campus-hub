@@ -5,28 +5,74 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import com.backend.dao.rowmappers.CheckInCheckOutRowMapper;
 import com.backend.pojo.CheckInCheckOut;
 
 @Repository
 public class CheckInCheckOutDao extends StarterDao {
 
-	public String checkOut(int registrationNumber) {
-		String query = "INSERT INTO `check_out` (`reg_no`) values(?);";
+	public String checkOut(String hostelName,int registrationNumber) {
+		
+		String query = "select `id` from `hostels` where name = ?;";
+		int hostelId = (int)jdbcTemplate.queryForObject(query,Integer.class, hostelName);
+		
+		query = "SELECT EXISTS(SELECT * from `students` WHERE `reg_no`=? AND `hostel_id`=?);";
+		try {
+			int isPresentInHostel = (int)jdbcTemplate.queryForObject(query,Integer.class,registrationNumber,hostelId);
+			if(isPresentInHostel==0)
+				return "No such student in Hostel";
+		}catch(Exception e) {
+			return "Server Error";
+		}
+		
+		query = "SELECT EXISTS(SELECT * from `check_out` WHERE `reg_no`=?);";
+		try {
+			int isPresentInHostel = (int)jdbcTemplate.queryForObject(query,Integer.class,registrationNumber);
+			if(isPresentInHostel==1)
+				return "Student is already Checked out";
+		}catch(Exception e) {
+			return "Server Error";
+		}
+		
+		query = "INSERT INTO `check_out` (`reg_no`) values(?);";
 		try {	
 			jdbcTemplate.update(query, registrationNumber);
 			return "checked out";
 		}catch(Exception e) {
-			return "error";
+			return "Server Error";
 		}
 	}
 	
-	public String checkIn(int registrationNumber) {
-		String query = "DELETE FROM `check_out` where `reg_no` = ?;";
+	public String checkIn(String hostelName, int registrationNumber) {
+		String query = "select `id` from `hostels` where name = ?;";
+		int hostelId = (int)jdbcTemplate.queryForObject(query,Integer.class, hostelName);
+		
+		query = "SELECT EXISTS(SELECT * from `students` WHERE `reg_no`=? AND `hostel_id`=?);";
+		try {
+			int isPresentInHostel = (int)jdbcTemplate.queryForObject(query,Integer.class,registrationNumber,hostelId);
+			if(isPresentInHostel==0)
+				return "No such student in Hostel";
+		}catch(Exception e) {
+			return "Server Error";
+		}
+		
+		query = "SELECT EXISTS(SELECT * from `check_out` WHERE `reg_no`=?);";
+		try {
+			int isPresentInHostel = (int)jdbcTemplate.queryForObject(query,Integer.class,registrationNumber);
+			if(isPresentInHostel==0)
+				return "Student is already Checked In";
+		}catch(Exception e) {
+			return "Server Error";
+		}
+		
+		
+		
+		query = "DELETE FROM `check_out` where `reg_no` = ?;";
 		int res = jdbcTemplate.update(query, registrationNumber);
 		if(res == 1) {	
 			return "checked in";
 		}
-		return "error";
+		return "Server Error";
 	}
 	
 	public List<CheckInCheckOut> listOfOutSideStudents(){

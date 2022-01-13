@@ -9,17 +9,17 @@ const AddNotice = (props) => {
 
     const params = useParams();
     const hostelName = params.hostelName;
-    //const params = useParams();
-    console.log(hostelName);
     
     const onSubmit = (formValues) => {
         props.addNotice(hostelName, formValues);
     }
 
     return (
-        <div>
+        <div className="container">
+            <div className="card">
             <h1>ADD NOTICE</h1>
             <NoticeForm onSubmit={onSubmit} />
+        </div>
         </div>
     );
 

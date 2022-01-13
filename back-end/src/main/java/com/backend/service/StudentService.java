@@ -12,7 +12,7 @@ import com.backend.pojo.Student;
 
 @Service
 public class StudentService {
-
+	
 	@Autowired
 	StudentDao studentDao;
 	
@@ -44,8 +44,8 @@ public class StudentService {
 		return studentDao.fetchStudentByRegistrationNumber(registrationNumber);
 	}
 	
-	public Student fetchStudentByRegistrationNumberOfSpecificHostel(int registrationNumber) {
-		return studentDao.fetchStudentByRegistrationNumberOfSpecificHostel(registrationNumber);
+	public Student fetchStudentByRegistrationNumberOfSpecificHostel(String hostelName,int registrationNumber) {
+		return studentDao.fetchStudentByRegistrationNumberOfSpecificHostel(hostelName,registrationNumber);
 	}
 	
 	public List<Student> fetchStudents() {

@@ -10,6 +10,7 @@ import wardenReducer from "./wardenReducer";
 import branchReducer from "./branchReducer";
 import noticeReducer from "./noticeReducer";
 import complaintReducer from "./complaintReducer";
+import messReducer from "./messReducer";
 
 export default combineReducers({
     form : reducer,
@@ -22,5 +23,6 @@ export default combineReducers({
     wardens : wardenReducer,
     branch : branchReducer,
     notices : noticeReducer,
-    complaints : complaintReducer
+    complaints : complaintReducer,
+    menu : messReducer,
 });

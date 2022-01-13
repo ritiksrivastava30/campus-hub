@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 
 import { Button } from "../_utility_components/Button";
 import InputField from "../_utility_components/InputField";
+import { isNumericValue, isEmail, isPassword } from "../../_helpers/validation";
 
 const WardenForm = (props) => {
 
@@ -17,18 +18,28 @@ const WardenForm = (props) => {
 
   return (
     <div>
-      <form onSubmit={props.handleSubmit(props.onSubmit)}>
+      <form className="row" onSubmit={props.handleSubmit(props.onSubmit)}>
+      <div className="col-md-6 ">
         <Field name="name" component={InputField} label="NAME" />
+      </div>
+      <div className="col-md-6 ">
         <Field name="email" component={InputField} label="EMAIL ID" />
-        <Field name="password" component={InputField} label="PASSWORD" />
+        </div>
+        <div className="col-md-6 ">
+        <Field name="password" component={InputField} label="PASSWORD"  type = "password"  />
+        </div>
+        <div className="col-md-6 ">
         <Field name="phoneNumber" component={InputField} label="PHONE NUMBER" />
-        <div>
+        </div>
+        <div className="col-md-6 ">
           <label>HOSTEL</label>
             <Field name="hostelName" component="select">
               {renderOptions()}
             </Field>
         </div>
+        <div className="col-md-6 ">
         <Button text="ADD" />
+        </div>
       </form>
     </div>
   );
@@ -38,9 +49,9 @@ const WardenForm = (props) => {
 const validate = (formValues) => {
   const errors = {};
   if (!formValues.name) errors.name = "Enter a valid warden name";
-  if (!formValues.email) errors.email = "Enter a valid email id";
-  if (!formValues.password) errors.password = "Enter a valid password";
-  if (!formValues.phoneNumber) errors.phoneNumber = "Enter a valid phoneNumber";
+  if (!isEmail(formValues.email)) errors.email = "Enter a valid email id";
+  if (!isPassword(formValues.password)) errors.password = "Password must constain lowecase, uppercase, digit and a special character and length should atleast be 8.";
+  if (!isNumericValue(formValues.phoneNumber, 15)) errors.phoneNumber = "Enter a valid phoneNumber";
   if (!formValues.hostelName) errors.hostelName = "Select a valid hostel name";
   return errors;
 };

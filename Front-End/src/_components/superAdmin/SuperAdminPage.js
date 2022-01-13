@@ -17,13 +17,15 @@ const SuperAdminPage = (props) => {
     }, []);
 
     const reset = () => {
+        localStorage.clear();
         props.resetLogin();
         props.resetHostels();
         props.resetWardens();
     }
 
     return (
-        <div>
+        <div className="bgimg">
+            <div className="navbar">
             <h1>Super Admin Page</h1>
             <Link to = "/superAdmin/addHostel">
                 <Button text = {ADD_HOSTEL} />
@@ -40,6 +42,7 @@ const SuperAdminPage = (props) => {
             <Link to = "/">
                 <Button onClick = { reset } text = "LOG OUT" />
             </Link>
+            </div>
             <Outlet />
         </div>
     );

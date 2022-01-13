@@ -15,12 +15,14 @@ const GuardPage = (props) => {
     }, []);
 
     const reset = () => {
+        localStorage.clear();
         props.resetLogin();
     }
 
     return (
-        <div>
-            <h1> { hostelName } </h1>
+        <div className="bgimg">
+                <div className="navbar">
+            <h1 navbar-brand mb-0 h1> { hostelName } </h1>
             <Link to = { `/guards/${hostelName}/checkIn` }>
                 <Button text = { CHECK_IN } />
             </Link>
@@ -33,6 +35,7 @@ const GuardPage = (props) => {
             <Link to = "/">
                 <Button onClick = { reset } text = "LOG OUT" />
             </Link>
+            </div>
             <Outlet />
         </div>
     );

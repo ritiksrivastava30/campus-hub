@@ -9,9 +9,13 @@ const NoticeForm = (props) => {
 
   return (
     <div>
-      <form onSubmit={props.handleSubmit(props.onSubmit)}>
+      <form className="row" onSubmit={props.handleSubmit(props.onSubmit)}>
+        <div className="col-md-11 ">
         <Field name="notice" component={InputField} label="NOTICE TO BE ADDED:" />
+        </div>
+        <div className="col-md-1">
         <Button text="ADD" />
+        </div>
       </form>
     </div>
   );

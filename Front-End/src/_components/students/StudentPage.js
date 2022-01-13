@@ -4,7 +4,8 @@ import { connect } from "react-redux";
 import { Button } from "../_utility_components/Button";
 import { fetchStudentByRegistrationNumber, resetStudents, fetchNotices, resetNotices } from "../../_actions/student_actions";
 import { resetStatus, resetLogin } from "../../_actions/utility_actions";
-import {FILE_COMPLAINT,EDIT_DETAILS, PROFILE, NOTICES } from "../_constants/student_constants";
+import {FILE_COMPLAINT, PROFILE, NOTICES } from "../_constants/student_constants";
+import { MESS_MENU } from "../_constants/hostel_constants";
 
 const StudentPage = (props) => {
 
@@ -15,23 +16,21 @@ const StudentPage = (props) => {
         props.resetStatus();
         props.fetchNotices(registrationNumber);
         props.fetchStudentByRegistrationNumber(registrationNumber);
-        
     }, []);
 
     const reset = () => {
+        localStorage.clear();
         props.resetLogin();
         props.resetStudents();
         props.resetNotices();
     }
 
     return (
-        <div>
+        <div className="bgimg">
+            <div className="navbar">
             {props.student == undefined ? <h1></h1> : <h1> {props.student.name} </h1>}
             <Link to = { `/students/${registrationNumber}/fileComplaint`} >
                 <Button text = {FILE_COMPLAINT} />
-            </Link>
-            <Link to = {`/students/${registrationNumber}/editDetails`}>
-                <Button text = {EDIT_DETAILS} />
             </Link>
             <Link to = { `/students/${registrationNumber}/profile`} >
                 <Button text = {PROFILE} />
@@ -39,9 +38,13 @@ const StudentPage = (props) => {
             <Link to = { `/students/${registrationNumber}/notices`}>
                 <Button text = {NOTICES} />
             </Link>
+            <Link to = { `/students/${registrationNumber}/messMenu`}>
+                <Button text = {MESS_MENU} />
+            </Link>
             <Link to = "/">
                 <Button onClick = { reset } text = "LOG OUT" />
             </Link>
+            </div>
             <Outlet />
         </div>
     );

@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { connect } from "react-redux";
 
 import HomePage from "../_components/home/HomePage";
 import ErrorPage from "../_components/error/ErrorPage";
@@ -33,8 +34,23 @@ import SuperAdminPrivateRoute from "./SuperAdminPrivateRoute";
 import HostelPrivateRoute from "./HostelPrivateRoute";
 import StudentPrivateRoute from "./StudentPrivateRoute";
 import AddNotice from "../_components/hostels/AddNotice";
+import MessMenu from "../_components/mess/MessMenu";
 
-const App = () => {
+import { loginStudentThroughLocalStorage } from "../_actions/student_actions";
+import { loginGuardThroughLocalStorage } from "../_actions/guard_actions";
+import { loginHostelThroughLocalStorage } from "../_actions/hostel_actions";
+
+import "../_components/css/style.css";
+
+const App = (props) => {
+
+  const as = localStorage.getItem("as");
+  const to = localStorage.getItem("to");
+
+  if(as === "student") props.loginStudentThroughLocalStorage(to);
+  if(as === "hostel") props.loginHostelThroughLocalStorage(to);
+  if(as === "guard") props.loginGuardThroughLocalStorage(to);
+
 
   const superAdminRoutes = () => {
     return (
@@ -60,6 +76,7 @@ const App = () => {
           <Route path = "/hostels/:hostelName/addNotice" element = { <HostelPrivateRoute> <AddNotice /> </HostelPrivateRoute> } />
           <Route path = "/hostels/:hostelName/showComplaints" element = { <HostelPrivateRoute> <ShowComplaints /> </HostelPrivateRoute> } />
           <Route path = "/hostels/:hostelName/replyComplaint" element = { <HostelPrivateRoute> <ReplyComplaint /> </HostelPrivateRoute> } />
+          <Route path = "/hostels/:hostelName/messMenu" element = { <HostelPrivateRoute> <MessMenu /> </HostelPrivateRoute> } />
       </React.Fragment>
     )
   }
@@ -71,8 +88,10 @@ const App = () => {
           <Route path = "/students/:regNo/profile" element = { <StudentPrivateRoute> <Profile /> </StudentPrivateRoute> } />
           <Route path = "/students/:regNo/showReply" element = { <StudentPrivateRoute> <ShowReply /> </StudentPrivateRoute> } />
           <Route path = "/students/:regNo/notices" element = { <StudentPrivateRoute> <Notices/> </StudentPrivateRoute>} />
+          <Route path = "/students/:regNo/messMenu" element = { <StudentPrivateRoute> <MessMenu /> </StudentPrivateRoute>} />
       </React.Fragment>
     )
+    
   }
 
   const guardRoutes = () => {
@@ -109,4 +128,8 @@ const App = () => {
   );
 };
 
-export default App;
+const actionCreators = {
+  loginGuardThroughLocalStorage, loginHostelThroughLocalStorage, loginStudentThroughLocalStorage
+}
+
+export default connect( null, actionCreators )(App);

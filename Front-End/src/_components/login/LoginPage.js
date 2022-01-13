@@ -14,6 +14,7 @@ import { loginGuard } from "../../_actions/guard_actions";
 import { loginCanteen } from "../../_actions/canteen_actions";
 import { resetLogin } from "../../_actions/utility_actions";
 import ErrorModal from "../_utility_components/ErrorModal";
+import { isEmail, isNumericValue, isPassword } from "../../_helpers/validation";
 
 const LoginPage = (props) => {
 
@@ -48,14 +49,24 @@ const LoginPage = (props) => {
 
   
   return (
-    <div>
+    <div className="bgimg">
+    <div className="container">
+      <div className="card">
       <Title text={titleText} />
-      <form onSubmit={props.handleSubmit(onSubmit)} >
+      <form className="row" onSubmit={props.handleSubmit(onSubmit)} >
+      <div className="col-md-5 ">
         <Field name="userName" component={InputField} label="Username" />
-        <Field name="password" component={InputField} label="Password" />
-        <Button text="Submit" />      
+        </div>
+        <div className="col-md-5 ">
+        <Field name="password" type = "password" component={InputField} label="Password" />
+        </div>
+        <div className="col-md-2 ">
+        <Button text="Submit" />   
+        </div>   
       </form>
       {props.status.status === "Error" ? <ErrorModal /> : null }
+      </div>
+    </div>
     </div>
   );
 
@@ -63,9 +74,18 @@ const LoginPage = (props) => {
 
 
 const validate = (formValues) => {
+  const loginAs = window.location.pathname.split("/")[2];
+  console.log(loginAs)
   const errors = {};
-  if(!formValues.userName) errors.userName = "Enter a valid username";
-  if(!formValues.password) errors.password = "Enter a valid password";
+  if(loginAs === "students") {
+    console.log("if")
+    if( !isNumericValue(formValues.userName, 10) ) errors.userName = "Enter a valid username";
+  }
+  else {
+    console.log("else")
+    if( !isEmail(formValues.userName) ) errors.userName = "Enter a valid username";
+  }
+  if( !isPassword(formValues.password) ) errors.password = "Enter a valid password";
   return errors;
 };
 

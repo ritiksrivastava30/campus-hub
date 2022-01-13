@@ -8,6 +8,7 @@ import { Button } from "../_utility_components/Button";
 import { checkIn, checkOut } from "../../_actions/checkin_checkout_actions";
 import ErrorModal from "../_utility_components/ErrorModal";
 import { resetStatus } from "../../_actions/utility_actions";
+import { isNumericValue } from "../../_helpers/validation";
 
 const CheckInCheckOut = (props) => {
 
@@ -25,12 +26,18 @@ const CheckInCheckOut = (props) => {
     }
 
     return (
-        <div>
-            <form onSubmit = { props.handleSubmit(onSubmit) }>
+        <div className="container">
+            <div className="card">
+            <form className="row" onSubmit = { props.handleSubmit(onSubmit) }>
+                <div className="col-md-11">
                 <Field name = "registrationNumber" component = {InputField} label = "Registration Number" />
+                </div>
+                <div className="col-md-1">
                 <Button text = "ENTER" />
+                </div>
                 { props.status.status === "Error" ? <ErrorModal /> : null }
             </form>
+        </div>
         </div>
     );
 }
@@ -38,7 +45,7 @@ const CheckInCheckOut = (props) => {
 
 const validate = ( formValues ) => {
     const errors = {};
-    if(!formValues.registrationNumber) errors.registrationNumber = "Enter a valid registration number";
+    if( !isNumericValue(formValues.registrationNumber, 10) ) errors.registrationNumber = "Enter a valid registration number";
     return errors;
 }
 

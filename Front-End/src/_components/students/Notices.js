@@ -19,10 +19,13 @@ const Notices = (props) => {
     const notices = Object.values(props.notices);
 
     return (
-        <div>
+        <div className="container">
+            <div className="card">            
             <h2>Notices</h2>
             <NoticeTable data = { notices } rowsPerPage={8} />
         </div>
+        </div>
+
     );
 }
 

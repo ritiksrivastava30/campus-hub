@@ -11,9 +11,10 @@ const InputField = (formProps) => {
   return (
     <div>
       <label> {formProps.label} </label>
-      <input
+      <input className="form-control" 
         onChange={formProps.input.onChange}
         value={formProps.input.value}
+        type = {formProps.type}
       />
       {renderError(formProps.meta)}
     </div>

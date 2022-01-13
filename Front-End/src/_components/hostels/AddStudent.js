@@ -27,7 +27,8 @@ const AddStudent = (props) => {
     }
 
     return (
-        <div>
+        <div className="container">
+            <div className="card">
             {
             props.status.status === "Success" ? 
                 <ShowStudent title = "Student Added Successfully" student = {student} /> :
@@ -37,6 +38,7 @@ const AddStudent = (props) => {
                     {props.status.status === "Error" ? <ErrorModal /> : null }
                 </div>
             }
+        </div>
         </div>
     );
 

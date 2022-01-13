@@ -6,30 +6,38 @@ import api from "../apis/main";
 import { formValues } from "redux-form";
 
 export const loginStudent = (formValues) => async dispatch => {
-    console.log(LOGIN_STUDENT);
-    const response = await api.get(`/students/${formValues.userName}/${formValues.password}`);
-    console.log(response.data);
-    dispatch({ type : LOGIN_STUDENT, payload : response.data });
+    try {
+        const response = await api.get(`/students/${formValues.userName}/${formValues.password}`);
+        console.log(response.data);
+        if(response.data === "error") {
+            dispatch({ type : "STATUS", payload : { status:"Error", description : "Check your credentials." } }); 
+            return; 
+        }
+        localStorage.setItem("as", "student");
+        localStorage.setItem("to", response.data);
+    
+        dispatch({ type : "STATUS", payload : { status:"Success", description : `${response.data}` } }); 
+        dispatch({ type : LOGIN_STUDENT, payload : response.data });
+    } catch(error) {
+        dispatch({ type : "STATUS", payload : { status:"Error", description : "Server Error" } }); 
+    }
 }
 
 export const fetchStudents = () => async dispatch => {
-    console.log(FETCH_STUDENTS);
     const response = await api.get("/students");
     
     dispatch({ type : FETCH_STUDENTS, payload : response.data });
 }
 
 export const fetchStudentsOfHostel = (hostelName) => async dispatch => {
-    console.log(FETCH_STUDENTS_OF_HOSTEL);
     const response = await api.get(`/students/hostel/${hostelName}`);
     
     dispatch({ type : FETCH_STUDENTS_OF_HOSTEL, payload : response.data });
 }
 
 export const fetchNotices = (regNo) => async dispatch => {
-    console.log(FETCH_NOTICES);
     const response = await api.get(`/students/notices/${regNo}`);
-    console.log(response.data);
+
     dispatch({ type : FETCH_NOTICES, payload : response.data });
 }
 
@@ -59,15 +67,8 @@ export const fileComplaint = (regNo, formValues) => async dispatch => {
     dispatch({ type : FILE_COMPLAINT , payload : response.data });
 }
 export const addStudent = (formValues) => async dispatch => {
-    console.log(ADD_STUDENT);
-    console.log(formValues);
+    try {
     const response = await api.post("/students", formValues);
-
-    dispatch({ type : ADD_STUDENT, payload : response.data });
-}
-
-export const editStudent = (id, formValues) => async dispatch => {
-    const response = await api.patch(`/students/${id}`, formValues);
 
     if(_.isEmpty(response.data)) {
         dispatch({ type : "STATUS", payload : { status:"Error", description : "A student with same registration number already exists." } }); 
@@ -75,7 +76,26 @@ export const editStudent = (id, formValues) => async dispatch => {
     }
 
     dispatch({ type : "STATUS", payload : { status:"Success", description : `${response.data.name}` } }); 
-    dispatch({ type : EDIT_STUDENT, payload : response.data });
+    dispatch({ type : ADD_STUDENT, payload : response.data });
+    }catch(error){
+        dispatch({ type : "STATUS", payload : { status:"Error", description : "Server Error" } }); 
+    }
+}
+
+export const editStudent = (id, formValues) => async dispatch => {
+    try {
+        const response = await api.patch(`/students/${id}`, formValues);
+
+        if(_.isEmpty(response.data)) {
+            dispatch({ type : "STATUS", payload : { status:"Error", description : "A student with same registration number already exists." } }); 
+            return; 
+        }
+
+        dispatch({ type : "STATUS", payload : { status:"Success", description : `${response.data.name}` } }); 
+        dispatch({ type : EDIT_STUDENT, payload : response.data });
+    } catch(error){
+        dispatch({ type : "STATUS", payload : { status:"Error", description : "Server Error" } }); 
+    }
 }
 
 export const fetchStudentByRegistrationNumberOfSpecificHostel = (registrationNumber, hostelName) => async dispatch => {
@@ -112,3 +132,7 @@ export const resetComplaints = () => async dispatch => {
     dispatch ({ type : RESET_COMPLAINTS, payload : {} });
 }
 
+export const loginStudentThroughLocalStorage = (registrationNumber) => async dispatch => {
+    
+    dispatch({ type : LOGIN_STUDENT, payload : registrationNumber });
+}
