@@ -24,6 +24,7 @@ import StudentsOutside from "../_components/guards/StudentsOutside";
 import HostelPage from "../_components/hostels/HostelPage";
 import AddStudent from "../_components/hostels/AddStudent";
 import ShowStudents from "../_components/hostels/ShowStudents";
+import Complaints from "../_components/hostels/Complaints";
 import EditStudent from "../_components/hostels/EditStudent";
 import SearchStudent from "../_components/hostels/SearchStudent";
 import ShowComplaints from "../_components/hostels/ShowComplaints";
@@ -69,6 +70,7 @@ const App = (props) => {
       <React.Fragment>
           <Route path = "/hostels/:hostelName/addStudent" element = { <HostelPrivateRoute> <AddStudent /> </HostelPrivateRoute> } />  
           <Route path = "/hostels/:hostelName/showStudents" element = { <HostelPrivateRoute> <ShowStudents /> </HostelPrivateRoute>} />  
+          <Route path = "/hostels/:hostelName/complaints" element = { <HostelPrivateRoute> <Complaints/> </HostelPrivateRoute> } />  
           <Route path = "/hostels/:hostelName/editStudent/:regNo" element = { <HostelPrivateRoute> < EditStudent/> </HostelPrivateRoute>} />  
           <Route path = "/hostels/:hostelName/searchStudent" element = { <HostelPrivateRoute> < SearchStudent/> </HostelPrivateRoute>} />  
           <Route path = "/hostels/:hostelName/addNotice" element = { <HostelPrivateRoute> <AddNotice /> </HostelPrivateRoute> } />

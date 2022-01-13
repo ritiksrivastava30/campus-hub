@@ -18,14 +18,11 @@ const ShowReply = (props) => {
     return (
         <div>
             {_.isEmpty(props.complaints) ? null : 
-            <div classname="container">
-                <div className="card">
+            <div>
             <h2> Complaint : { props.complaints.complaint } </h2>
             <h2> Reply : { props.complaints.reply } </h2>
             </div>
-            </div>
             }
-            
         </div>
     );
 }
