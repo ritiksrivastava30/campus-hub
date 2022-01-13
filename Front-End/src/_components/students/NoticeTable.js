@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import useTable from "../_utility_components/useTable";
-//import styles from "../_utility_components/Table.module.css";
 import TableFooter from "../_utility_components/TableFooter";
 
 const NoticeTable = ({ data, rowsPerPage }) => {
@@ -12,6 +11,7 @@ const NoticeTable = ({ data, rowsPerPage }) => {
       <table className= "table table-striped table-bordered table-responsive table-info">
         <thead>
           <tr>
+            <th className="col">Id</th>
             <th className="col">Notice</th>
             
           </tr>
@@ -19,6 +19,7 @@ const NoticeTable = ({ data, rowsPerPage }) => {
         <tbody>
           {slice.map((el) => (
             <tr key={el.id}>
+              <td> {el.id}</td>
               <td> {el.notice} </td>
             </tr>
           ))}
