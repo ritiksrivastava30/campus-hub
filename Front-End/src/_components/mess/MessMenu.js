@@ -1,6 +1,7 @@
 import _ from "lodash";
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import { useParams } from "react-router-dom";
 
 import { fetchMenu, resetMenu } from "../../_actions/mess_actions";
 import ChangeMessMenu from "./ChangeMessMenu";
@@ -8,20 +9,22 @@ import MenuTable from "./MenuTable";
 
 const MessMenu = ( props ) => {
 
+    const loginAs = window.location.pathname.split("/")[1]
+    
     useEffect(() => {
-        if(_.isEmpty(props.student)) return;
         let hostelName;
-        if(props.login.as == "student"){
-            hostelName = props.student.hostelName
-        }
-        else{
+        if(loginAs === "hostels"){
             hostelName = props.login.to
         }
+        else{
+            hostelName = props.student.hostelName
+        }
+        
         props.fetchMenu(hostelName);
 
         return () => props.resetMenu();
 
-    }, [props.login, props.student]);
+    }, []);
 
     const menu = Object.values(props.menu);
 

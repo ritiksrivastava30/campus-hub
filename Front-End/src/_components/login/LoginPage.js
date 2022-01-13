@@ -75,10 +75,8 @@ const LoginPage = (props) => {
 
 const validate = (formValues) => {
   const loginAs = window.location.pathname.split("/")[2];
-  console.log(loginAs)
   const errors = {};
   if(loginAs === "students") {
-    console.log("if")
     if( !isNumericValue(formValues.userName, 10) ) errors.userName = "Enter a valid username";
   }
   else {

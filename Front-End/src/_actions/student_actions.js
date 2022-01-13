@@ -8,7 +8,6 @@ import { formValues } from "redux-form";
 export const loginStudent = (formValues) => async dispatch => {
     try {
         const response = await api.get(`/students/${formValues.userName}/${formValues.password}`);
-        console.log(response.data);
         if(response.data === "error") {
             dispatch({ type : "STATUS", payload : { status:"Error", description : "Check your credentials." } }); 
             return; 

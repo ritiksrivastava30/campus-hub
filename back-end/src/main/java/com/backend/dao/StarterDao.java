@@ -39,11 +39,11 @@ public class StarterDao {
 		jdbcTemplate.execute(que);
 		que = "CREATE TABLE IF NOT EXISTS `notices` (`id` INT NOT NULL AUTO_INCREMENT, `notice` VARCHAR(250) NOT NULL, `hostel_id` INT NOT NULL, PRIMARY KEY (`id`));";
 		jdbcTemplate.execute(que);
-		insertBranches();
-		insertDummyHostels();  //just for testing
-		insertDummyWardens();  //just for testing
-		insertDummyGuards();   //just for testing
-		insertDummyStudents(); //just for testing
+//		insertBranches();
+//		insertDummyHostels();  //just for testing
+//		insertDummyWardens();  //just for testing
+//		insertDummyGuards();   //just for testing
+//		insertDummyStudents(); //just for testing
 	}
 	
 	public void insertBranches() {
@@ -73,9 +73,9 @@ public class StarterDao {
 		Integer reg=20194001;
 		Integer mob1=1288228288;
 		Integer mob2=1112334569;
-		for(int i=0;i<600;i++) {
-			String c="_aB";
-			String encodedPassword = passwordEncoder.encode(reg.toString()+c);
+		for(int i = 0 ; i < 600 ; i++) {
+			String c = "_aB";
+			String encodedPassword = passwordEncoder.encode(reg.toString() + c);
 			String que = "INSERT IGNORE INTO `students` (`reg_no`, `password`, `name`, `semester`, `address`, `personal_mob`, `parent_mob`, `branch_id`, `room_no`, `hostel_id`, `email`, `gender`, `dob`, `adhaarcard_no`, `blackdots`) VALUES ('"+ reg+"', '"+ encodedPassword +"' , '"+ names[i%12] +"', '6', 'Lakhisarai', '"+mob1.toString()+"', '"+mob2.toString()+"', '"+ (i%9 +1) +"', '"+ (i+100) +"', '"+(i%6 +1)+"', '"+names[i%12]+"@mnnit.ac.in', 'Male', '2000-12-02', '"+(12342522+i)+"', '0');";
 			reg++;
 			System.out.println(reg);
