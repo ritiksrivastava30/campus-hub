@@ -17,14 +17,14 @@ const MessMenu = ( props ) => {
             hostelName = props.login.to
         }
         else{
-            hostelName = props.student.hostelName
+            if(props.student) hostelName = props.student.hostelName
         }
         
         props.fetchMenu(hostelName);
 
         return () => props.resetMenu();
 
-    }, []);
+    }, [props.student]);
 
     const menu = Object.values(props.menu);
 
