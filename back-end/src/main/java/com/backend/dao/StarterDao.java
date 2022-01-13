@@ -32,6 +32,8 @@ public class StarterDao {
 		que= "CREATE TABLE IF NOT EXISTS `guards` (`id` INT NOT NULL AUTO_INCREMENT, `name` VARCHAR(100) NOT NULL, `email` VARCHAR(100) NOT NULL UNIQUE, `password` VARCHAR(60) NOT NULL, `phone_no` VARCHAR(15) NULL, `hostel_id` INT NULL, PRIMARY KEY (`id`), FOREIGN KEY(`hostel_id`) REFERENCES `hostels`(`id`));";
 		jdbcTemplate.execute(que);
 		que="CREATE TABLE IF NOT EXISTS `check_out` (`reg_no` INT NOT NULL, `check_out_time` TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, PRIMARY KEY (`reg_no`), FOREIGN KEY(`reg_no`) REFERENCES students(`reg_no`));";
+		jdbcTemplate.execute(que);
+		que= "CREATE TABLE IF NOT EXISTS `complaints` (`regNo` INT NOT NULL, `name` VARCHAR(100) NOT NULL,`complaint` VARCHAR(200) NOT NULL,`reply` VARCHAR(200) DEFAULT NULL,`hostel_id` INT NULL, PRIMARY KEY (`regNo`), FOREIGN KEY(`hostel_id`) REFERENCES `hostels`(`id`));";
 		jdbcTemplate.execute(que);	
 		que="CREATE TABLE IF NOT EXISTS `messmenu` (`id` INT NOT NULL AUTO_INCREMENT,`hostel_id` INT NOT NULL,`day` VARCHAR(50) NOT NULL, `breakfast` VARCHAR(255) NULL DEFAULT 'not set',`lunch` VARCHAR(255) NULL DEFAULT 'not set',`dinner` VARCHAR(255) NULL DEFAULT 'not set',PRIMARY KEY (`id`),FOREIGN KEY(`hostel_id`) REFERENCES `hostels`(`id`));";
 		jdbcTemplate.execute(que);
@@ -151,7 +153,7 @@ public class StarterDao {
 	public void addMenuForNewHostel(int hostel_id) {
 		String[] days= {"sunday","monday","tuesday","wednesday","thursday","friday","saturday"};
 		for(int i=0;i<7;i++) {
-			String query="INSERT INTO `messmenu` (`hostel_id`,`day`) VALUES (?,?)";
+			String query="INSERT IGNORE INTO `messmenu` (`hostel_id`,`day`) VALUES (?,?)";
 			jdbcTemplate.update(query,hostel_id,days[i]);
 		}
 	}

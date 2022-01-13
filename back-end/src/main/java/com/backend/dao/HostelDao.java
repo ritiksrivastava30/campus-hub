@@ -5,10 +5,12 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import com.backend.dao.rowmappers.ComplaintRowMapper;
 import com.backend.dao.rowmappers.HostelRowMapper;
 import com.backend.dao.rowmappers.NoticeRowMapper;
 import com.backend.pojo.Hostel;
 import com.backend.pojo.Notice;
+import com.backend.pojo.Complaint;
 
 @Repository
 public class HostelDao extends StarterDao {
@@ -47,6 +49,29 @@ public class HostelDao extends StarterDao {
 		}catch(Exception e) {
 			return null;
 		}
+	}
+	
+	public Complaint replyComplaint(int regNo, String reply) {
+		System.out.println("In reply Complaint");
+		String query="UPDATE `complaints` SET `reply`=? WHERE `regNo`=? ;";
+		try {
+			jdbcTemplate.update(query, reply, regNo);
+			query = "SELECT * from `complaints` WHERE `regNo` = ?;";
+			RowMapper<Complaint> rowMapper = new ComplaintRowMapper();
+			Complaint repliedComplaint = jdbcTemplate.queryForObject(query, rowMapper, regNo);
+			return repliedComplaint;
+		}catch(Exception e) {
+			return null;
+		}
+	} 
+	
+	public List<Complaint> fetchComplaints(String hostelName){
+		String que = "select `id` from `hostels` where name = ?;";
+		int id = (int)jdbcTemplate.queryForObject(que,Integer.class, hostelName);
+		System.out.println(id);
+		que="SELECT * from `complaints` WHERE `hostel_id` = ? AND reply IS NULL;";
+		List<Complaint> st=jdbcTemplate.query(que, new ComplaintRowMapper(),id);
+		return st;
 	}
 	
 	public List<Hostel> fetchHostels(){
