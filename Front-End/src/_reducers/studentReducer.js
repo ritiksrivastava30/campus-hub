@@ -1,4 +1,4 @@
-import { ADD_STUDENT, EDIT_STUDENT, RESET_STUDENTS, FETCH_STUDENT, FETCH_STUDENTS, FETCH_STUDENTS_OF_HOSTEL} from "../_actions/_types/student_types";
+import { ADD_STUDENT, EDIT_STUDENT, RESET_STUDENTS, FETCH_STUDENT, FETCH_STUDENTS, FETCH_STUDENTS_OF_HOSTEL, FILE_COMPLAINT} from "../_actions/_types/student_types";
 import _ from "lodash";
 
 export default(state = {}, action) => {
