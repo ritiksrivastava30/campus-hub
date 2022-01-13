@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
@@ -12,7 +11,6 @@ import com.backend.dao.rowmappers.NoticeRowMapper;
 import com.backend.dao.rowmappers.StudentRowMapper;
 import com.backend.pojo.Notice;
 import com.backend.pojo.Student;
-import com.backend.pojo.Complaint;
 
 @Repository
 public class StudentDao extends StarterDao{
@@ -53,30 +51,10 @@ public class StudentDao extends StarterDao{
 		String query = "SELECT `reg_no`, `password`, students.name, `semester`, `address`, `personal_mob`, `parent_mob`, branch.name, `room_no`, hostels.name, `email`, `gender`, `dob`, `adhaarcard_no`, `blackdots` FROM `students` join `branch` join `hostels` WHERE students.branch_id = branch.id AND students.hostel_id = hostels.id AND hostels.id = ?;";
 		try {
 			List<Student> students = jdbcTemplate.query(query, new StudentRowMapper(), hostelId);
+			
 			return students;
 		}
 		catch(Exception e) {
-			return null;
-		}
-	}
-	
-	public Complaint addComplaint(int regNo, String complaint) {
-		System.out.println("In Complaint");
-		String query = "select `hostel_id` from `students` where reg_no = ?;";
-		int hid = (int)jdbcTemplate.queryForObject(query,Integer.class, regNo);
-		query="select `name` from `students` where reg_no = ?;";
-		String name = (String)jdbcTemplate.queryForObject(query,String.class, regNo);
-		System.out.println(hid+" "+name);
-		//String reply=null;
-		query = "INSERT INTO `complaints`(`regNo`,`name`,`complaint`,  `hostel_id`) values (?, ?, ?, ?);";
-		try {
-			jdbcTemplate.update(query, regNo,name,complaint,hid);
-			query = "SELECT * from `complaints` WHERE `regNo` = ?;";
-			RowMapper<Complaint> rowMapper = new ComplaintRowMapper();
-			Complaint addedComplaint = jdbcTemplate.queryForObject(query, rowMapper, regNo);
-			System.out.println("complaint added");
-			return addedComplaint;
-		}catch(Exception e) {
 			return null;
 		}
 	}
@@ -86,16 +64,6 @@ public class StudentDao extends StarterDao{
 		int id = (int)jdbcTemplate.queryForObject(que,Integer.class, regNo);
 		que="SELECT * from `notices` WHERE `hostel_id` = ?;";
 		List<Notice> st=jdbcTemplate.query(que, new NoticeRowMapper(),id);
-		return st;
-	}
-	
-	public Complaint showReply(int regNo){
-		String que = "SELECT `regNo`, `name`, `complaint`, `reply` ,`hostel_id` FROM `complaints` WHERE `regNo`=? ;";
-	    Complaint st=jdbcTemplate.queryForObject(que, new ComplaintRowMapper(),regNo);
-	    if(st.getReply()!=null) {
-		    que="DELETE FROM `complaints` WHERE `regNo`=?;";
-		    jdbcTemplate.update(que,regNo);
-	    }
 		return st;
 	}
 	

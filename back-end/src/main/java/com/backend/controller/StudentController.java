@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.backend.pojo.Complaint;
 import com.backend.pojo.Notice;
 import com.backend.pojo.Student;
 import com.backend.service.StudentService;
@@ -32,11 +31,6 @@ public class StudentController {
 		return studentService.addStudent(s);
 	}
 	
-	@PostMapping("/students/fileComplaint/{regNo}/{complaint}")
-	public Complaint addComplaint(@PathVariable int regNo ,@PathVariable String complaint) {
-		return studentService.addComplaint(regNo, complaint);
-	}
-	
 	@PatchMapping("/students/{registrationNumber}")
 	public Student updateStudent(@PathVariable int registrationNumber, @RequestBody Student student) {
 		return studentService.updateStudent(registrationNumber, student);
@@ -47,10 +41,6 @@ public class StudentController {
 		return studentService.fetchStudentsByHostelName(hostelName);
 	}
 	
-	@GetMapping("/students/showReply/{regNo}")
-	public Complaint showReply(@PathVariable int regNo) {
-		return studentService.showReply(regNo);
-	}
 	@GetMapping("/students/{registrationNumber}")
 	public Student fetchStudentByRegistrationNumber(@PathVariable int registrationNumber) {
 		return studentService.fetchStudentByRegistrationNumber(registrationNumber);
