@@ -10,7 +10,6 @@ export const fetchMenu = (hostelName) => async dispatch => {
 export const changeMenu = (hostelName, day, time, updatedItem) => async dispatch => {
     const response = await api.patch(`/menu/${hostelName}/${day}/${time}/${updatedItem}`);
 
-    console.log(response.data);
     dispatch({ type : FETCH_MENU, payload : response.data })
 }
 

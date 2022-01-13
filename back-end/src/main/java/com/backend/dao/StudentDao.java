@@ -23,14 +23,18 @@ public class StudentDao extends StarterDao{
 	
 	public String studentLogin(String reg_no, String password) {
 		
+		System.out.println(reg_no + "  " + password);
 		String query = "Select password from students where reg_no = ?";
 		try {
 			String encodedPassword = (String)jdbcTemplate.queryForObject(query,String.class, reg_no);
 			if(passwordEncoder.matches(password, encodedPassword)){
+				System.out.println(1);
 				return reg_no;
 			}
+			System.out.println(3);
 			return "error";
 		}catch(Exception e) {
+			System.out.println(2);
 			return "error";
 		}
 		
