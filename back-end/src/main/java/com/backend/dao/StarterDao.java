@@ -39,11 +39,11 @@ public class StarterDao {
 		jdbcTemplate.execute(que);
 		que = "CREATE TABLE IF NOT EXISTS `notices` (`id` INT NOT NULL AUTO_INCREMENT, `notice` VARCHAR(250) NOT NULL, `hostel_id` INT NOT NULL, PRIMARY KEY (`id`));";
 		jdbcTemplate.execute(que);
-		insertBranches();
-		insertDummyHostels();  //just for testing
-		insertDummyWardens();  //just for testing
-		insertDummyGuards();   //just for testing
-		insertDummyStudents(); //just for testing
+//		insertBranches();
+//		insertDummyHostels();  //just for testing
+//		insertDummyWardens();  //just for testing
+//		insertDummyGuards();   //just for testing
+//		insertDummyStudents(); //just for testing
 	}
 	
 	public void insertBranches() {
