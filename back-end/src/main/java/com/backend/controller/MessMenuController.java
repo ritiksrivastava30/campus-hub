@@ -29,6 +29,7 @@ public class MessMenuController {
 	
 	@GetMapping("/menu/{hostelName}")
 	public List<Day> fetchMessMenu(@PathVariable String hostelName) {
+		System.out.println(hostelName);
 		return messMenuService.fetchMessMenu(hostelName);
 	}
 	
